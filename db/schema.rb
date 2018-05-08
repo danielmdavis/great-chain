@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_07_191911) do
+ActiveRecord::Schema.define(version: 2018_05_08_160138) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string "name", null: false
     t.integer "year", null: false
-    t.integer "shelf_id"
-    t.integer "thinker_id"
+    t.bigint "shelf_id"
+    t.bigint "thinker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shelf_id"], name: "index_books_on_shelf_id"
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 2018_05_07_191911) do
   end
 
   create_table "influences", force: :cascade do |t|
-    t.integer "teacher_id"
-    t.integer "student_id"
+    t.bigint "teacher_id"
+    t.bigint "student_id"
     t.index ["student_id"], name: "index_influences_on_student_id"
     t.index ["teacher_id"], name: "index_influences_on_teacher_id"
   end
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_05_07_191911) do
   create_table "shelves", force: :cascade do |t|
     t.boolean "want", null: false
     t.boolean "have", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_shelves_on_user_id"
@@ -43,6 +46,23 @@ ActiveRecord::Schema.define(version: 2018_05_07_191911) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

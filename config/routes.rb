@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root "shelf#index"
+  root "shelves#index"
 
-  resources :users
+  devise_for :user
+
+  resources :user
   resources :shelves
   resources :books
   resources :thinkers
   resources :influence
   resources :comments
+
+  get "*path", to: 'shelves#index'
 end
