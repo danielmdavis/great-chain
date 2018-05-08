@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
-  root "shelves#index"
-
-  devise_for :user
-
-  resources :user
-  resources :shelves
-  resources :books
-  resources :thinkers
-  resources :influence
-  resources :comments
-
-  get "*path", to: 'shelves#index'
+  root 'homes#index'
+  devise_for :users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
