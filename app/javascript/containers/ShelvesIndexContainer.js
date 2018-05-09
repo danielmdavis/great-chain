@@ -36,8 +36,8 @@ class ShelvesIndexContainer extends Component {
     <BookTile
       key={book.id}
       id={book.id}
-      title={book.title}
-      thinker={book.author}
+      name={book.name}
+      thinker={book.thinker}
       year={book.year}
     />
 
