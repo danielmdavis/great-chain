@@ -6,9 +6,15 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :books
       resources :shelves
-      resources :thinkers
+      resources :thinkers do
+        resources :influences
+      end
       resources :influences
     end
+  end
+
+  resources :influences do
+    resources :comments
   end
 
 end

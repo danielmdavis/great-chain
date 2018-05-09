@@ -19,3 +19,4 @@ b2 = Book.create!(id: Book.all.length, name: "Apology", year: 399, thinker:t1, s
 b3 = Book.create!(id: Book.all.length, name: "Categories", year: 322, thinker:t2, shelf:shelf)
 
 Influence.create(teacher:t1, student:t2)
+Influence.create(teacher:t5, student:t8)
