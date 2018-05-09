@@ -12,4 +12,10 @@ t10 = Thinker.create(id: Thinker.all.length, name: "Nietzsche")
 
 user = User.create!(email: "testo@gmail.com", password: "secret")
 
-shelf = Shelf.creat
+shelf = Shelf.create(id: user.id, user: user)
+
+b1 = Book.create!(id: Book.all.length, name: "Euthyphro", year: 399, thinker:t1, shelf:shelf)
+b2 = Book.create!(id: Book.all.length, name: "Apology", year: 399, thinker:t1, shelf:shelf)
+b3 = Book.create!(id: Book.all.length, name: "Categories", year: 322, thinker:t2, shelf:shelf)
+
+Influence.create(teacher:t1, student:t2)

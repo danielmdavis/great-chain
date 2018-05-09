@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 2018_05_08_210345) do
   end
 
   create_table "shelves", force: :cascade do |t|
-    t.boolean "want", null: false
-    t.boolean "have", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
