@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BookTile from '../components/BookTile'
 
 class ShelvesIndexContainer extends Component {
   constructor(props){
@@ -8,15 +9,12 @@ class ShelvesIndexContainer extends Component {
       searchText: '',
       searchResults: []
     }
-
-
   }
 
-
-  componentDidMount(){
+  componentDidMount() {
       fetch('/api/v1/books.json')
         .then(response => {
-          if (response.ok) {;
+          if (response.ok) {
             return response;
           } else {
             let errorMessage = `${response.status} (${response.statusText})`,
@@ -29,20 +27,20 @@ class ShelvesIndexContainer extends Component {
           this.setState({ books: body });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
-    }
+  }
 
-
-  return (
-    <BookTile
-      key={book.id}
-      id={book.id}
-      name={book.name}
-      thinker={book.thinker}
-      year={book.year}
-    />
-
-  )
-
+  render(){
+    const { book } = this.state
+    return (
+      <BookTile
+        key={book.id}
+        id={book.id}
+        name={book.name}
+        thinker={book.thinker}
+        year={book.year}
+      />
+    )
+  }
 }
 
 export default ShelvesIndexContainer;

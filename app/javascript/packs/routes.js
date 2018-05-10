@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Router, browserHistory, Route, IndexRoute } from 'react-router';
-import SpotsIndexContainer from './containers/SpotsIndexContainer';
+import ShelvesIndexContainer from './containers/ShelvesIndexContainer';
 
 class Routes extends Component {
 
