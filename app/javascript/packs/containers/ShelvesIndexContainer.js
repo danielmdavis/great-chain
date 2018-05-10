@@ -30,15 +30,26 @@ class ShelvesIndexContainer extends Component {
   }
 
   render(){
-    const { book } = this.state
+    
+    let booksArray = this.state.books.map(book => {
+      return (
+        <BookTile
+          key={book.id}
+          id={book.id}
+          name={book.name}
+          thinker={book.thinker}
+          year={book.year}
+          />
+      )
+      return booksArray
+    }
+    )
+
     return (
-      <BookTile
-        key={book.id}
-        id={book.id}
-        name={book.name}
-        thinker={book.thinker}
-        year={book.year}
-      />
+      <div className="test">
+        <h1>Hello from REACT</h1>
+        {booksArray}
+      </div>
     )
   }
 }

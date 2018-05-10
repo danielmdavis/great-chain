@@ -1,5 +1,6 @@
 class InfluencesController < ApplicationController
-
+  def index 
+  end
 
   def show
     @influence = Influence.find(params[:id])
