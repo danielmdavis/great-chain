@@ -24,20 +24,19 @@ class ShelvesIndexContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          this.setState({ books: body });
+          this.setState({ books: body.books });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render(){
-    
-    let booksArray = this.state.books.map(book => {
+    let booksArray = this.state.books.map((book) => {
       return (
         <BookTile
           key={book.id}
           id={book.id}
           name={book.name}
-          thinker={book.thinker}
+          thinker={book.thinker.name}
           year={book.year}
           />
       )
