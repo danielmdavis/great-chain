@@ -20,3 +20,5 @@ b3 = Book.create!(id: Book.all.length, name: "Categories", year: 322, thinker:t2
 
 Influence.create(teacher:t1, student:t2)
 Influence.create(teacher:t5, student:t8)
+
+Comment.create(description:"the moderns only see the differences, the ancients only saw the similarities. I tend towards the latter", vote: 1, influence_id: 1, user_id: 1)

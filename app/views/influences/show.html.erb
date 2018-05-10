@@ -1,5 +1,38 @@
-<h1>SHOW ME STUFF</h1>
 
 <h3>
-<%= @influence.teacher.name %> influenced <%= @influence.student.name %>
-</h3> 
+Did <%= @influence.teacher.name %> influence <%= @influence.student.name %>? Discuss.
+
+</h3>
+
+  <% @comments.each do |comment| %>
+  <div class="comment row" >
+    <div class="columns medium-8" ><%= comment.description %> </div>
+
+    <% if comment.vote == 1 %>
+      <div class="vote columns medium-4" >Supports Inclusion.</div>
+    <%elsif comment.vote == -1 %>
+      <div class="vote columns medium-4" >Rejects Inclusion.</div>
+    <%else%>
+      <div class="vote columns medium-4" >No Vote.</div>
+    <%end%>
+  </div>
+  <%end%>
+
+
+<div class="row" >
+<%= form_for([@influence, @comment]) do |f|  %>
+  <div class="field">
+    <%= f.label :description, class: "label" %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote, :class => "label" %><br />
+    <%= f.select :vote, [[1],[0],[-1]] %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Comment", class: "button form-submit" %>
+  </div>
+<% end %>
+</div>
