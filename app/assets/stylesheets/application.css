@@ -20,14 +20,28 @@
 margin: 20px;
 } */
 
+body {
+  background-color: grey;
+}
+
 .comment {
-  border-width: 2px;
-  border-color: black;
-  border-style: solid;
+  border: 2px solid black;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.test {
-  border: 2px solid blue;
+.book {
+  font-family: "Libre Baskerville";
+  font-size: 1.7em;
+  background-color: #697153;
+  height: 60px;
+  margin: 1.5px;
+}
+
+.selectedbook {
+  font-family: "Libre Baskerville";
+  font-size: 1.7em;
+  background-color: #A0A584;
+  height: 60px;
+  margin: 1.5px;
 }
