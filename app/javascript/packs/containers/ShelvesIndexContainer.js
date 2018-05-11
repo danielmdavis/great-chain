@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookTile from '../components/BookTile'
+import SearchApp from '../components/SearchApp'
 
 class ShelvesIndexContainer extends Component {
   constructor(props){
@@ -11,10 +12,11 @@ class ShelvesIndexContainer extends Component {
       searchResults: []
     }
     this.handleClick = this.handleClick.bind(this)
+    this.updateSearchResults = this.updateSearchResults.bind(this)
   }
 
   handleClick(id){
-    // this.setState({selectedFirst: id})
+    // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(id)) {
       let remove = this.state.selectedArray.indexOf(id)
       this.state.selectedArray.splice(remove, 1)
@@ -42,11 +44,32 @@ class ShelvesIndexContainer extends Component {
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+
+    updateSearchResults(searchText) {
+      let tempResults = []
+      this.state.books.map((book) => {
+        let searchTerms = book.name + book.thinker.name
+        if (searchTerms.toLowerCase().includes(searchText.toLowerCase())) {
+          tempResults.push(book)
+        }
+      })
+      this.setState({
+        searchText: searchText,
+        searchResults: tempResults,
+      })
+    }
+
+
   render(){
+    let path
+    if (this.state.searchText === '') {
+      path = this.state.books
+    } else {
+      path = this.state.searchResults
+    }
 
     let styleString;
-    let booksArray = this.state.books.map((book) => {
-
+    let booksArray = path.map((book) => {
       if(this.state.selectedArray.includes(book.id)) {
         styleString = "selectedbook"
       } else {
@@ -69,11 +92,12 @@ class ShelvesIndexContainer extends Component {
       return booksArray
     })
 
-
     return (
-      <div className="test">
-        <h1>Add to Shelf</h1>
+      <div className="rows">
+        <div className="columns medium-6">
+        <SearchApp updateSearchResults={this.updateSearchResults} />
         {booksArray}
+      </div>
       </div>
     )
   }
