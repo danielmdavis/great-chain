@@ -6,9 +6,22 @@ class ShelvesIndexContainer extends Component {
     super(props)
     this.state = {
       books: [],
+      selectedArray: [],
       searchText: '',
       searchResults: []
     }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(id){
+    // this.setState({selectedFirst: id})
+    if(this.state.selectedArray.includes(id)) {
+      let remove = this.state.selectedArray.indexOf(id)
+      this.state.selectedArray.splice(remove, 1)
+    } else {
+      this.state.selectedArray.push(id)
+    }
+    this.forceUpdate()
   }
 
   componentDidMount() {
@@ -24,21 +37,44 @@ class ShelvesIndexContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          this.setState({ books: body });
+          this.setState({ books: body.books });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render(){
-    const { book } = this.state
+
+    let styleString;
+    let booksArray = this.state.books.map((book) => {
+
+      if(this.state.selectedArray.includes(book.id)) {
+        styleString = "selectedbook"
+      } else {
+        styleString = "book"
+      }
+
+      let handleClick = () => this.handleClick(book.id)
+
+      return (
+        <BookTile
+          key={book.id}
+          id={book.id}
+          name={book.name}
+          thinker={book.thinker.name}
+          year={book.year}
+          handleClick={handleClick}
+          styleString={styleString}
+          />
+      )
+      return booksArray
+    })
+
+
     return (
-      <BookTile
-        key={book.id}
-        id={book.id}
-        name={book.name}
-        thinker={book.thinker}
-        year={book.year}
-      />
+      <div className="test">
+        <h1>Add to Shelf</h1>
+        {booksArray}
+      </div>
     )
   }
 }

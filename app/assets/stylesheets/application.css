@@ -16,14 +16,41 @@
 
  */
 
-h1,h2,h3,h4,div,strong,span {
-  margin: 20px;
+/* h1,h2,h3,h4,div,strong,span {
+margin: 20px;
+} */
+
+body {
+  background-color: grey;
 }
 
 .comment {
-  border-width: 2px;
-  border-color: black;
-  border-style: solid;
+  border: 2px solid black;
   margin-bottom: 20px;
   text-align: center;
+}
+
+.book {
+  background-color: #697153;
+  height: 60px;
+  margin: 1.5px;
+}
+
+.selectedbook {
+  background-color: #A0A584;
+  height: 60px;
+  margin: 1.5px;
+}
+
+.title {
+  font-family: "Libre Baskerville";
+  font-size: 1.7em;
+  margin: 2px 4px;
+}
+
+.author {
+  font-family: "Montserrat";
+  text-align: right;
+  margin-left: 10px;
+  margin-bottom: 6px;
 }

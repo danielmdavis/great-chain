@@ -14,9 +14,11 @@ user = User.create!(email: "testo@gmail.com", password: "secret")
 
 shelf = Shelf.create(id: user.id, user: user)
 
-b1 = Book.create!(id: Book.all.length, name: "Euthyphro", year: 399, thinker:t1, shelf:shelf)
-b2 = Book.create!(id: Book.all.length, name: "Apology", year: 399, thinker:t1, shelf:shelf)
-b3 = Book.create!(id: Book.all.length, name: "Categories", year: 322, thinker:t2, shelf:shelf)
+b1 = Book.create!(id: Book.all.length, name: "Euthyphro", year: 399, thinker:t1)
+b2 = Book.create!(id: Book.all.length, name: "Apology", year: 399, thinker:t1)
+b3 = Book.create!(id: Book.all.length, name: "Symposium", year: 395, thinker:t1)
+b4 = Book.create!(id: Book.all.length, name: "Categories", year: 322, thinker:t2)
+b5 = Book.create!(id: Book.all.length, name: "Metaphysics", year: 320, thinker:t2)
 
 Influence.create(teacher:t1, student:t2)
 Influence.create(teacher:t5, student:t8)
