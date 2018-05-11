@@ -16,6 +16,33 @@ class ShelvesIndexContainer extends Component {
     this.updateSearchResults = this.updateSearchResults.bind(this)
   }
 
+  //   search(query) {
+  //   event.preventDefault();
+  //   fetch(`/shelves.json`, {
+  //     credentials: 'same-origin',
+  //     method: 'POST',
+  //     body: JSON.stringify(query),
+  //     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+  //   })
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response;
+  //     } else {
+  //       let errorMessage = `${response.status} (${response.statusText})`,
+  //           error = new Error(errorMessage);
+  //       throw(error);
+  //     }
+  //   })
+  //   .then(response => response.json())
+  //   .then(query => {
+  //     debugger;
+  //     this.setState({
+  //       query: query
+  //     })
+  //   })
+  //   .catch(error => console.error(`Error in fetch (submitting new review): ${error.message}`))
+  // }
+
   handleClick(id){
     // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(id)) {
@@ -28,7 +55,8 @@ class ShelvesIndexContainer extends Component {
   }
 
   componentDidMount() {
-      fetch('/api/v1/books.json')
+      // fetch('/api/v1/books.json')
+      fetch('/shelves.json')
         .then(response => {
           if (response.ok) {
             return response;
@@ -84,7 +112,7 @@ class ShelvesIndexContainer extends Component {
           key={book.id}
           id={book.id}
           name={book.name}
-          thinker={book.thinker.name}
+          thinker={book.thinker}
           year={book.year}
           handleClick={handleClick}
           styleString={styleString}
