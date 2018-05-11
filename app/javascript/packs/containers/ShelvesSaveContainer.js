@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import BookTile from '../components/BookTile'
 import SearchApp from '../components/SearchApp'
-import ShelvesSaveContainer from './ShelvesSaveContainer'
 
-class ShelvesIndexContainer extends Component {
+class ShelvesSaveContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -100,10 +99,9 @@ class ShelvesIndexContainer extends Component {
         <SearchApp updateSearchResults={this.updateSearchResults} />
         {booksArray}
       </div>
-      <ShelvesSaveContainer />
       </div>
     )
   }
 }
 
-export default ShelvesIndexContainer;
+export default ShelvesSaveContainer;
