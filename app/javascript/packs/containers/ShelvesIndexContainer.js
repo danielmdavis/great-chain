@@ -16,7 +16,8 @@ class ShelvesIndexContainer extends Component {
   handleClick(id){
     // this.setState({selectedFirst: id})
     if(this.state.selectedArray.includes(id)) {
-      this.state.selectedArray.splice(id)
+      let remove = this.state.selectedArray.indexOf(id)
+      this.state.selectedArray.splice(remove, 1)
     } else {
       this.state.selectedArray.push(id)
     }

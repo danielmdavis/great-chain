@@ -7,7 +7,8 @@ const BookTile = (props) => {
     <div className="row" onClick={props.handleClick}>
       <div className="columns medium-6">
         <div className={props.styleString}>
-          {props.name} by {props.thinker}
+          <span className="title">{props.name}</span>
+            <span className="author"> by {props.thinker}</span>
         </div>
       </div>
     </div>

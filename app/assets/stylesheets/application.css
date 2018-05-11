@@ -31,17 +31,26 @@ body {
 }
 
 .book {
-  font-family: "Libre Baskerville";
-  font-size: 1.7em;
   background-color: #697153;
   height: 60px;
   margin: 1.5px;
 }
 
 .selectedbook {
-  font-family: "Libre Baskerville";
-  font-size: 1.7em;
   background-color: #A0A584;
   height: 60px;
   margin: 1.5px;
+}
+
+.title {
+  font-family: "Libre Baskerville";
+  font-size: 1.7em;
+  margin: 2px 4px;
+}
+
+.author {
+  font-family: "Montserrat";
+  text-align: right;
+  margin-left: 10px;
+  margin-bottom: 6px;
 }
