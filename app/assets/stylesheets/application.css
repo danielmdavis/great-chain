@@ -42,7 +42,8 @@ body {
 }
 
 .hiddenbook {
-  visibility: hidden;
+  visibility: collapse;
+  display: none; 
   margin: 0px;
 }
 
