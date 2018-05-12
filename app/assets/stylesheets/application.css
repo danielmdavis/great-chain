@@ -21,7 +21,8 @@ margin: 20px;
 } */
 
 body {
-  background-color: grey;
+  background-color: #e05915;
+  color: #431c5d;
 }
 
 .comment {
@@ -31,9 +32,13 @@ body {
 }
 
 .book {
-  background-color: #697153;
+  background-color: #bccbde;
   height: 60px;
   margin: 1.5px;
+}
+
+.book:hover {
+  background-color: #c2dde6;
 }
 
 .hiddenbook {
@@ -42,7 +47,7 @@ body {
 }
 
 .selectedbook {
-  background-color: #A0A584;
+  background-color: #e6e9f0;
   height: 60px;
   margin: 1.5px;
 }
