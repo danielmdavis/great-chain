@@ -43,7 +43,7 @@ body {
 
 .hiddenbook {
   visibility: collapse;
-  display: none; 
+  display: none;
   margin: 0px;
 }
 
@@ -64,4 +64,16 @@ body {
   text-align: right;
   margin-left: 10px;
   margin-bottom: 6px;
+}
+
+.search {
+  height: 60px;
+}
+
+.savebutton {
+  height: 37px;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 100%;
+  display: block;
 }

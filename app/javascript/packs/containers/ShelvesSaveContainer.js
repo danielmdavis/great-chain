@@ -26,6 +26,11 @@ class ShelvesSaveContainer extends Component {
     this.forceUpdate()
   }
 
+  handleSave(id){
+
+    this.forceUpdate()
+  }
+
   componentDidMount() {
       fetch('/api/v1/books.json')
         .then(response => {
@@ -64,13 +69,13 @@ class ShelvesSaveContainer extends Component {
     let path = this.props.booksArray
     let selectedBooks = this.props.selectedArray
 
-
-
     let styleString;
+    let booksToSave = [];
     let booksArray = path.map((book) => {
 
       if(selectedBooks.includes(book.id)) {
         styleString = "book"
+        booksToSave.push(book)
       } else {
         styleString = "hiddenbook"
       }
@@ -90,12 +95,11 @@ class ShelvesSaveContainer extends Component {
       )
       return booksArray
     })
-
     return (
       <div className="rows">
         <div className="columns medium-6">
           <br/>
-        <SearchApp updateSearchResults={this.updateSearchResults} />
+        <button className="savebutton centered" onClick={this.handleSave}>Save Books to Shelf</button>
         {booksArray}
       </div>
       </div>

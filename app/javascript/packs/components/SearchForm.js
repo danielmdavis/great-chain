@@ -9,7 +9,7 @@ const SearchForm = props => {
     <input
       type='text'
       onChange={handleSearch}
-      placeholder="Search"
+      placeholder="Search for a Book or Philosopher"
     />
   </span>;
 
