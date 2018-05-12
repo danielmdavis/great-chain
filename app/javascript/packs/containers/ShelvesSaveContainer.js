@@ -61,19 +61,18 @@ class ShelvesSaveContainer extends Component {
 
 
   render(){
-    let path
-    if (this.state.searchText === '') {
-      path = this.state.books
-    } else {
-      path = this.state.searchResults
-    }
+    let path = this.props.booksArray
+    let selectedBooks = this.props.selectedArray
+
+
 
     let styleString;
     let booksArray = path.map((book) => {
-      if(this.state.selectedArray.includes(book.id)) {
-        styleString = "selectedbook"
-      } else {
+
+      if(selectedBooks.includes(book.id)) {
         styleString = "book"
+      } else {
+        styleString = "hiddenbook"
       }
 
       let handleClick = () => this.handleClick(book.id)

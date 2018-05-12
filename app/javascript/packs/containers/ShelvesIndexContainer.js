@@ -121,6 +121,7 @@ class ShelvesIndexContainer extends Component {
       return booksArray
     })
 
+
     return (
       <div className="rows">
         <div className="columns medium-6">
@@ -128,7 +129,9 @@ class ShelvesIndexContainer extends Component {
         <SearchApp updateSearchResults={this.updateSearchResults} />
         {booksArray}
       </div>
-      <ShelvesSaveContainer />
+      <ShelvesSaveContainer
+        booksArray={this.state.books}
+        selectedArray={this.state.selectedArray} />
       </div>
     )
   }
