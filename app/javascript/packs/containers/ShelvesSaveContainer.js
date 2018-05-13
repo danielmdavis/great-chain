@@ -12,7 +12,7 @@ class ShelvesSaveContainer extends Component {
       searchResults: []
     }
     this.handleClick = this.handleClick.bind(this)
-    this.updateSearchResults = this.updateSearchResults.bind(this)
+    this.handleSave = this.handleSave.bind(this)
   }
 
   handleClick(id){
@@ -26,9 +26,8 @@ class ShelvesSaveContainer extends Component {
     this.forceUpdate()
   }
 
-  handleSave(id){
-
-    this.forceUpdate()
+  handleSave(event){
+    this.props.addNewBooks(this.props.selectedArray)
   }
 
   componentDidMount() {
@@ -50,37 +49,21 @@ class ShelvesSaveContainer extends Component {
   }
 
 
-    updateSearchResults(searchText) {
-      let tempResults = []
-      this.state.books.map((book) => {
-        let searchTerms = book.name + book.thinker.name
-        if (searchTerms.toLowerCase().includes(searchText.toLowerCase())) {
-          tempResults.push(book)
-        }
-      })
-      this.setState({
-        searchText: searchText,
-        searchResults: tempResults,
-      })
-    }
-
 
   render(){
     let path = this.props.booksArray
     let selectedBooks = this.props.selectedArray
 
     let styleString;
-    let booksToSave = [];
     let booksArray = path.map((book) => {
 
-      if(selectedBooks.includes(book.id)) {
+      if(selectedBooks.includes(book)) {
         styleString = "book"
-        booksToSave.push(book)
       } else {
         styleString = "hiddenbook"
       }
 
-      let handleClick = () => this.handleClick(book.id)
+      let handleClick = () => this.handleClick(book)
 
       return (
         <BookTile
