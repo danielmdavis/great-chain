@@ -28,7 +28,7 @@ class ShelvesSaveContainer extends Component {
 
   handleSave(event){
     this.props.addNewBooks(this.props.selectedArray)
-    
+
   }
 
   componentDidMount() {
@@ -71,7 +71,7 @@ class ShelvesSaveContainer extends Component {
           key={book.id}
           id={book.id}
           name={book.name}
-          thinker={book.thinker.name}
+          thinker={book.thinker}
           year={book.year}
           handleClick={handleClick}
           styleString={styleString}

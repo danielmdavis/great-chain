@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import BookTile from '../components/BookTile'
 import SearchApp from '../components/SearchApp'
-import ShelvesSaveContainer from './ShelvesSaveContainer'
 
-class ShelvesIndexContainer extends Component {
+
+class ShelvesShowContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -21,7 +21,6 @@ class ShelvesIndexContainer extends Component {
 
     updateSearchResults(query) {
     event.preventDefault();
-    debugger;
     fetch(`/shelves.json`, {
       credentials: 'same-origin',
       method: 'POST',
@@ -91,7 +90,7 @@ class ShelvesIndexContainer extends Component {
   // })
 
   componentDidMount() {
-      fetch('/api/v1/shelves/0.json')
+      fetch('/api/v1/shelves/1.json')
         .then(response => {
           if (response.ok) {
             return response;
@@ -103,7 +102,9 @@ class ShelvesIndexContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          this.setState({ books: body.books });
+          let data = body.books
+          console.log(data)
+          this.setState({ books: data });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -126,7 +127,7 @@ class ShelvesIndexContainer extends Component {
 
   render(){
 
-    let path
+    let path;
     if (this.state.searchText === '') {
       path = this.state.books
     } else {
@@ -140,10 +141,7 @@ class ShelvesIndexContainer extends Component {
       } else {
         styleString = "book"
       }
-
-
       let handleClick = () => this.handleClick(book)
-
       return (
         <BookTile
           key={book.id}
@@ -153,9 +151,8 @@ class ShelvesIndexContainer extends Component {
           year={book.year}
           handleClick={handleClick}
           styleString={styleString}
-          />
+        />
       )
-      return booksArray
     })
 
     return (
@@ -170,4 +167,4 @@ class ShelvesIndexContainer extends Component {
   }
 }
 
-export default ShelvesIndexContainer;
+export default ShelvesShowContainer;

@@ -44,8 +44,6 @@ class ShelvesIndexContainer extends Component {
     }
 
 
-
-
   handleClick(book){
     // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(book)) {

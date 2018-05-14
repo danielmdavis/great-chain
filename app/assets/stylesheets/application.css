@@ -97,3 +97,12 @@ body {
   width: 100%;
   display: block;
 }
+
+.topbar {
+  align-items: left;
+}
+
+.top-bar {
+  height: 60px;
+  background-color: #431c5d;
+}

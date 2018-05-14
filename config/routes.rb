@@ -13,17 +13,15 @@ Rails.application.routes.draw do
     end
   end
 
-  #resources :shelves do
-  #end
+  # resources :shelves
 
-  resources :shelves do
-    resources :searches
-  end
+  resources :searches
+
 
   resources :influences do
    resources :comments
   end
 
-  get "/shelves", to: "shelves#search"
+  get "/shelves", to: "shelves#index"
   get "*path", to: 'shelves#index'
 end
