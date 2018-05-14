@@ -91,8 +91,7 @@ class ShelvesIndexContainer extends Component {
   // })
 
   componentDidMount() {
-      fetch('/api/v1/books.json')
-      // fetch('/shelves.json')
+      fetch('/api/v1/shelves/0.json')
         .then(response => {
           if (response.ok) {
             return response;
@@ -159,18 +158,13 @@ class ShelvesIndexContainer extends Component {
       return booksArray
     })
 
-
     return (
       <div className="rows">
         <div className="columns medium-6">
           <br/>
         <SearchApp updateSearchResults={this.updateSearchResults} />
         {booksArray}
-      </div>
-      <ShelvesSaveContainer
-        booksArray={this.state.books}
-        selectedArray={this.state.selectedArray}
-        addNewBooks={this.addNewBooks}/>
+        </div>
       </div>
     )
   }

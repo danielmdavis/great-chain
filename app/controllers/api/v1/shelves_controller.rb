@@ -5,4 +5,9 @@ class Api::V1::ShelvesController < ApiController
   end
 
 
+  def show
+    shelf_key = Shelf.find(params[:id])
+    render json: Book.where(shelf_id: shelf_key)
+  end
+
 end

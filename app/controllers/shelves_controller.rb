@@ -5,7 +5,6 @@ class ShelvesController < ApplicationController
   def search
     topic = params[:query]
     parser = Parser.new
-    parser.search
 
     data = parser.search["GoodreadsResponse"]["search"]["results"]["work"]
     formatted_books = []
@@ -18,8 +17,10 @@ class ShelvesController < ApplicationController
       }
       formatted_books << book_hash
     end
-
     render json: { books: formatted_books }
-
   end
+
+  def show
+  end
+
 end

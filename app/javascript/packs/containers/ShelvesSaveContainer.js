@@ -28,6 +28,7 @@ class ShelvesSaveContainer extends Component {
 
   handleSave(event){
     this.props.addNewBooks(this.props.selectedArray)
+    
   }
 
   componentDidMount() {

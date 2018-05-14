@@ -5,4 +5,5 @@ class Book < ApplicationRecord
 
   belongs_to :thinker
 
+
 end
