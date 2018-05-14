@@ -21,15 +21,10 @@ margin: 20px;
 } */
 
 body {
-  background-color: #e05915;
+  background-color: gray;
   color: #431c5d;
 }
 
-.comment {
-  border: 2px solid black;
-  margin-bottom: 20px;
-  text-align: center;
-}
 
 .book {
   background-color: #bccbde;
@@ -57,6 +52,31 @@ body {
   font-family: "Libre Baskerville";
   font-size: 1.5em;
   margin: 2px 4px;
+}
+
+.splash {
+  font-family: "Montserrat";
+  font-style: italic;
+  text-align: center;
+
+  color: #431c5d;
+  background-color: #bccbde;
+  margin: 8px;
+}
+
+.comment {
+  border: 2px solid black;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.comment_tile {
+  font-family: "Montserrat";
+  font-style: italic;
+  text-align: center;
+  color: #431c5d;
+  background-color: #bccbde;
+  margin: 8px;
 }
 
 .author {
