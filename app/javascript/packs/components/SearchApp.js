@@ -19,7 +19,7 @@ class SearchApp extends React.Component {
   render() {
     return(
     <div>
-      <div className="searchapp">
+      <div>
         <SearchForm
           value={this.state.searchText}
           handleSearch={this.handleSearch}

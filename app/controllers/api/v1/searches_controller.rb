@@ -1,15 +1,17 @@
 require 'httparty'
-require 'pry'
-class Parser
-  attr_reader :data
 
-  def initialize(query)
+class Api::V1::SearchesController < ApiController
 
+  def index
+    render json: @data
   end
 
+  def search
 
-  def search(query)
+    query = params["_json"]
+    query = "prolegomena"
 
+    binding.pry
     # response = HTTParty.get("https://www.goodreads.com/search.xml?key=#{ENV["GR_KEY"]}&q=#{query}")
     response = HTTParty.get("https://www.goodreads.com/search.xml?key=B8epnsvG4JVbFEGCw5FlA&q=#{query}")
     # response = HTTParty.get("https://www.goodreads.com/search.xml?key=B8epnsvG4JVbFEGCw5FlA&q=prolegomena")
@@ -27,5 +29,11 @@ class Parser
     end
     @data = formatted_books
 
+
+
+    render json: @data
+
+
   end
+
 end

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import BookTile from '../components/BookTile'
 import SearchApp from '../components/SearchApp'
-import ShelvesSaveContainer from './ShelvesSaveContainer'
 
-class ShelvesIndexContainer extends Component {
+
+class ShelvesShowContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -12,12 +12,36 @@ class ShelvesIndexContainer extends Component {
       searchText: '',
       searchResults: [],
       saveBooks: [],
+      query: ''
     }
     this.handleClick = this.handleClick.bind(this)
     this.updateSearchResults = this.updateSearchResults.bind(this)
     this.addNewBooks = this.addNewBooks.bind(this)
   }
 
+    updateSearchResults(query) {
+    event.preventDefault();
+    fetch(`/shelves.json`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(query),
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(query => {
+      this.setState({ query: query })
+    })
+    .catch(error => console.error(`Error in fetch (submitting new review): ${error.message}`))
+  }
 
   addNewBooks(submission) {
       event.preventDefault();
@@ -44,6 +68,8 @@ class ShelvesIndexContainer extends Component {
     }
 
 
+
+
   handleClick(book){
     // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(book)) {
@@ -64,7 +90,7 @@ class ShelvesIndexContainer extends Component {
   // })
 
   componentDidMount() {
-      fetch(`/api/v1/searches.json`)
+      fetch('/api/v1/shelves/1.json')
         .then(response => {
           if (response.ok) {
             return response;
@@ -76,36 +102,13 @@ class ShelvesIndexContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          this.setState({ books: body.books });
+          let data = body.books
+          console.log(data)
+          this.setState({ books: data });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-
-  postSearchResults(query) {
-    event.preventDefault();
-    fetch(`/api/v1/searches.json`, {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(query),
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(response => response.json())
-    .then(query => {
-      debugger;
-      this.setState({ searchText: searchText })
-    })
-    .catch(error => console.error(`Error in fetch (posting query): ${error.message}`))
-  }
 
     updateSearchResults(searchText) {
       let tempResults = []
@@ -115,17 +118,16 @@ class ShelvesIndexContainer extends Component {
           tempResults.push(book)
         }
       })
-
       this.setState({
         searchText: searchText,
         searchResults: tempResults,
       })
-      this.postSearchResults(this.state.searchText)
     }
+
 
   render(){
 
-    let path
+    let path;
     if (this.state.searchText === '') {
       path = this.state.books
     } else {
@@ -139,10 +141,7 @@ class ShelvesIndexContainer extends Component {
       } else {
         styleString = "book"
       }
-
-
       let handleClick = () => this.handleClick(book)
-
       return (
         <BookTile
           key={book.id}
@@ -152,28 +151,20 @@ class ShelvesIndexContainer extends Component {
           year={book.year}
           handleClick={handleClick}
           styleString={styleString}
-          />
+        />
       )
-      return booksArray
     })
-
 
     return (
       <div className="rows">
-        <h3 className="splash">Track your reading list and map out the connections you uncover</h3>
-        <h4 className="splash">Populate your personal philosophical library, then contribute to a shared model</h4>
         <div className="columns medium-6">
           <br/>
         <SearchApp updateSearchResults={this.updateSearchResults} />
         {booksArray}
-      </div>
-      <ShelvesSaveContainer
-        booksArray={this.state.books}
-        selectedArray={this.state.selectedArray}
-        addNewBooks={this.addNewBooks}/>
+        </div>
       </div>
     )
   }
 }
 
-export default ShelvesIndexContainer;
+export default ShelvesShowContainer;

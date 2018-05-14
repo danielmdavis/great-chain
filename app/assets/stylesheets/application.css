@@ -21,28 +21,29 @@ margin: 20px;
 } */
 
 body {
-  background-color: grey;
+  background-color: gray;
+  color: #431c5d;
 }
 
-.comment {
-  border: 2px solid black;
-  margin-bottom: 20px;
-  text-align: center;
-}
 
 .book {
-  background-color: #697153;
+  background-color: #bccbde;
   height: 60px;
   margin: 1.5px;
 }
 
+.book:hover {
+  background-color: #c2dde6;
+}
+
 .hiddenbook {
-  visibility: hidden;
+  visibility: collapse;
+  display: none;
   margin: 0px;
 }
 
 .selectedbook {
-  background-color: #A0A584;
+  background-color: #e6e9f0;
   height: 60px;
   margin: 1.5px;
 }
@@ -53,9 +54,55 @@ body {
   margin: 2px 4px;
 }
 
+.splash {
+  font-family: "Montserrat";
+  font-style: italic;
+  text-align: center;
+
+  color: #431c5d;
+  background-color: #bccbde;
+  margin: 8px;
+}
+
+.comment {
+  border: 2px solid black;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.comment_tile {
+  font-family: "Montserrat";
+  font-style: italic;
+  text-align: center;
+  color: #431c5d;
+  background-color: #bccbde;
+  margin: 8px;
+}
+
 .author {
   font-family: "Montserrat";
   text-align: right;
   margin-left: 10px;
   margin-bottom: 6px;
+}
+
+.search {
+  height: 60px;
+}
+
+.savebutton {
+  height: 37px;
+  margin: auto;
+  margin-bottom: 15px;
+  width: 100%;
+  display: block;
+}
+
+.topbar {
+  align-items: left;
+}
+
+.top-bar {
+  height: 60px;
+  background-color: #431c5d;
 }

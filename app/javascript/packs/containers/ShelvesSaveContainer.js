@@ -12,7 +12,7 @@ class ShelvesSaveContainer extends Component {
       searchResults: []
     }
     this.handleClick = this.handleClick.bind(this)
-    this.updateSearchResults = this.updateSearchResults.bind(this)
+    this.handleSave = this.handleSave.bind(this)
   }
 
   handleClick(id){
@@ -24,6 +24,11 @@ class ShelvesSaveContainer extends Component {
       this.state.selectedArray.push(id)
     }
     this.forceUpdate()
+  }
+
+  handleSave(event){
+    this.props.addNewBooks(this.props.selectedArray)
+
   }
 
   componentDidMount() {
@@ -45,44 +50,28 @@ class ShelvesSaveContainer extends Component {
   }
 
 
-    updateSearchResults(searchText) {
-      let tempResults = []
-      this.state.books.map((book) => {
-        let searchTerms = book.name + book.thinker.name
-        if (searchTerms.toLowerCase().includes(searchText.toLowerCase())) {
-          tempResults.push(book)
-        }
-      })
-      this.setState({
-        searchText: searchText,
-        searchResults: tempResults,
-      })
-    }
-
 
   render(){
     let path = this.props.booksArray
     let selectedBooks = this.props.selectedArray
 
-
-
     let styleString;
     let booksArray = path.map((book) => {
 
-      if(selectedBooks.includes(book.id)) {
+      if(selectedBooks.includes(book)) {
         styleString = "book"
       } else {
         styleString = "hiddenbook"
       }
 
-      let handleClick = () => this.handleClick(book.id)
+      let handleClick = () => this.handleClick(book)
 
       return (
         <BookTile
           key={book.id}
           id={book.id}
           name={book.name}
-          thinker={book.thinker.name}
+          thinker={book.thinker}
           year={book.year}
           handleClick={handleClick}
           styleString={styleString}
@@ -90,12 +79,11 @@ class ShelvesSaveContainer extends Component {
       )
       return booksArray
     })
-
     return (
       <div className="rows">
         <div className="columns medium-6">
           <br/>
-        <SearchApp updateSearchResults={this.updateSearchResults} />
+        <button className="savebutton centered" onClick={this.handleSave}>Save Books to Shelf</button>
         {booksArray}
       </div>
       </div>
