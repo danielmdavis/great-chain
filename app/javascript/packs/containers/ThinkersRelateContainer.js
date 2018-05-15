@@ -9,6 +9,8 @@ class ThinkersRelateContainer extends Component {
     this.state = {
       books: [],
       selectedArray: [],
+      selectedFirst: '',
+      selectedSecond: '',
       searchText: '',
       searchResults: []
     }
@@ -18,12 +20,19 @@ class ThinkersRelateContainer extends Component {
 
   handleClick(book){
     this.handleSave = this.handleSave.bind(this)
-    if(this.state.selectedArray.includes(book.thinker.id)) {
-      let remove = this.state.selectedArray.indexOf(book.thinker.id)
-      this.state.selectedArray.splice(remove, 1)
-    } else {
-      this.state.selectedArray.push(book.thinker.id)
+
+    if(this.state.selectedFirst == book.thinker.id){
+
+      this.state.selectedFirst = ''
+    } else if(this.state.selectedSecond == book.thinker.id){
+      let remove = this.state.selectedFirst.indexOf(book.thinker.id)
+      this.state.selectedSecond = ''
+    } else if(this.state.selectedFirst == ''){
+      this.state.selectedFirst = book.thinker.id
+    } else if(this.state.selectedSecond == ''){
+      this.state.selectedSecond = book.thinker.id
     }
+
     this.forceUpdate()
   }
 
@@ -41,9 +50,11 @@ class ThinkersRelateContainer extends Component {
         duplicateCheck.push(book.thinker.id)
 
       let styleString;
-      if(this.state.selectedArray.includes(book.thinker.id)) {
-        styleString = "selectedbook"
-      } else {
+      if(this.state.selectedFirst == book.thinker.id){
+        styleString = "teacherbook"
+      }else if(this.state.selectedSecond == book.thinker.id){
+        styleString = "studentbook"
+      }else{
         styleString = "book"
       }
 
