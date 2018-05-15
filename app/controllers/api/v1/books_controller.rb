@@ -8,7 +8,7 @@ class Api::V1::BooksController < ApiController
     data = params["_json"]
     data.each do |book|
       if Thinker.find_by_name(book["thinker"]).present?
-        
+
         Book.create!(
           name: book["name"],
           thinker: Thinker.find_by_name(book["thinker"]),
@@ -23,7 +23,7 @@ class Api::V1::BooksController < ApiController
             thinker: this_thinker,
             year: book["year"],
             id: book["id"],
-            shelf_id: 0
+            shelf_id: 1
           )
       end
     end

@@ -23,6 +23,7 @@ class Api::V1::SearchesController < ApiController
       formatted_books << book_hash
     end
     data = formatted_books
+
     render json: data
   end
 

@@ -135,11 +135,9 @@ class ShelvesIndexContainer extends Component {
 
   render(){
 
-    let path = this.state.books
-
 
     let styleString;
-    let booksArray = path.map((book) => {
+    let booksArray = this.state.books.map((book) => {
       if(this.state.selectedArray.includes(book)) {
         styleString = "selectedbook"
       } else {
@@ -148,7 +146,6 @@ class ShelvesIndexContainer extends Component {
 
 
       let handleClick = () => this.handleClick(book)
-
       return (
         <BookTile
           key={book.id}

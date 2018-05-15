@@ -132,8 +132,8 @@ class ShelvesShowContainer extends Component {
         })
         .then(response => response.json())
         .then(body => {
-          let data = body.books
-          this.setState({ books: data });
+          console.log(body);
+          this.setState({ books: body.books });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -181,7 +181,7 @@ class ShelvesShowContainer extends Component {
           key={book.id}
           id={book.id}
           name={book.name}
-          thinker={book.thinker}
+          thinker={book.thinker.name}
           year={book.year}
           handleClick={handleClick}
           styleString={styleString}
