@@ -15,21 +15,22 @@
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
-        <h1><a href="/">GreatChain</a></h1>
+        <h1 class="greatchain"><a href="/">The GREAT CHAIN</a></h1>
       </li>
     </ul>
 
     <section class="top-bar-section">
       <ul class="right">
-          <li class="link"><%= link_to 'Search and Add Books to Shelf', root_path %></li>
+        <li class="link"><%= link_to 'About', root_path, :class => "navbutton" %></li>
+        <li class="link"><%= link_to 'Search and Add to Shelf', root_path, :class => "navbutton"  %></li>
         <%- if current_user -%>
 
-          <li> <a href"/shelves/0"> View Shelf and Add Influences </a> </li>
-          <li> <a href"/influences"> View Influences Visualization </a> </li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <li> <a class="navbutton" href"/shelves/0"> View Shelf and Add Influences </a> </li>
+          <li> <a class="navbutton" href"/influences"> View Influences Visualization </a> </li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "navbutton"  %></li>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path, :class => "navbutton"  %></li>
+          <li><%= link_to 'Sign In', new_user_session_path, :class => "navbutton"  %></li>
         <%- end -%>
       </ul>
     </section>

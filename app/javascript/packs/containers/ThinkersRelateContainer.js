@@ -77,7 +77,7 @@ class ThinkersRelateContainer extends Component {
       <div className="rows">
         <div className="columns medium-6">
           <br/>
-          <button className="savebutton centered" onClick={this.handleSave}>Save a Student Teacher Relationship</button>
+          <button className="savebutton centered" onClick={this.handleSave}>Click to SAVE Once You've Defined an Influence Relationship</button>
           {thinkers}
         </div>
       </div>

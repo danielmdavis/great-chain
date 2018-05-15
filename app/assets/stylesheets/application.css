@@ -31,29 +31,24 @@ body {
   height: 60px;
   margin: 1.5px;
 }
-
 .book:hover {
   background-color: #c2dde6;
 }
-
 .hiddenbook {
   visibility: collapse;
   display: none;
   margin: 0px;
 }
-
 .selectedbook {
   background-color: #e6e9f0;
   height: 60px;
   margin: 1.5px;
 }
-
 .teacherbook {
   background-color: green;
   height: 60px;
   margin: 1.5px;
 }
-
 .studentbook {
   background-color: red;
   height: 60px;
@@ -70,7 +65,6 @@ body {
   font-family: "Montserrat";
   font-style: italic;
   text-align: center;
-
   color: #431c5d;
   background-color: #bccbde;
   margin: 8px;
@@ -114,12 +108,19 @@ body {
   align-items: left;
 }
 
-.top-bar {
-  height: 60px;
-  background-color: #431c5d;
-  font-family: "Montserrat";
-  font-size: 1.5em;
-  color: red;
+.top-bar, .navbutton {
+  height: 60px !important;
+  background-color: #431c5d !important;
+  font-family: "Montserrat" !important;
+  font-size: .8em !important;
+  vertical-align: text-bottom !important;
+}
+.navbutton:hover {
+  background-color: #5d416f !important;
+}
+
+.greatchain {
+  font-family: "Libre Baskerville" !important;
 }
 
 a {
