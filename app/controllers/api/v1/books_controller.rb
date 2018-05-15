@@ -6,6 +6,7 @@ class Api::V1::BooksController < ApiController
 
   def create
     data = params["_json"]
+
     data.each do |book|
       if Thinker.find_by_name(book["thinker"]).present?
 

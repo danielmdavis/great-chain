@@ -12,17 +12,43 @@ class ThinkersRelateContainer extends Component {
       selectedFirst: '',
       selectedSecond: '',
       searchText: '',
-      searchResults: []
+      searchResults: [],
+      influencePair: []
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleSave = this.handleSave.bind(this)
   }
 
+  addNewInfluence(submission) {
+      event.preventDefault();
+      fetch(`/api/v1/influences.json`, {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify(submission),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(influence => {
+        this.setState({
+          influencePair: influencePair
+        })
+      })
+      .catch(error => console.error(`Error in fetch (submitting books error): ${error.message}`))
+    }
+
+
   handleClick(book){
     this.handleSave = this.handleSave.bind(this)
-
     if(this.state.selectedFirst == book.thinker.id){
-
       this.state.selectedFirst = ''
     } else if(this.state.selectedSecond == book.thinker.id){
       let remove = this.state.selectedFirst.indexOf(book.thinker.id)
@@ -32,12 +58,12 @@ class ThinkersRelateContainer extends Component {
     } else if(this.state.selectedSecond == ''){
       this.state.selectedSecond = book.thinker.id
     }
-
     this.forceUpdate()
   }
 
   handleSave(event){
-    this.props.addNewInfluence(this.props.selectedFirst,this.props.selectedSecond)
+    this.state.influencePair.push(this.state.selectedFirst,this.state.selectedSecond)
+    this.addNewInfluence(this.state.influencePair)
   }
 
   render(){
@@ -52,9 +78,9 @@ class ThinkersRelateContainer extends Component {
       let styleString;
       if(this.state.selectedFirst == book.thinker.id){
         styleString = "teacherbook"
-      }else if(this.state.selectedSecond == book.thinker.id){
+      } else if(this.state.selectedSecond == book.thinker.id){
         styleString = "studentbook"
-      }else{
+      } else{
         styleString = "book"
       }
 
