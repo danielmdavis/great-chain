@@ -5,12 +5,11 @@ class Api::V1::InfluencesController < ApiController
   end
 
   def create
-    data = params["_json"]
-    binding.pry
-    Influence.create!(
-      teacher:
-      student:
-    )
+
+    # Influence.create!(
+    #   teacher:
+    #   student:
+    # )
 
   end
 
