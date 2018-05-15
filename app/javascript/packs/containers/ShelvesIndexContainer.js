@@ -163,7 +163,7 @@ class ShelvesIndexContainer extends Component {
 
     return (
       <div className="rows">
-        <h3 className="splash">Track your reading list and map out the connections you uncover</h3>
+        <h3 className="splash"><strong>Track your reading list and map out the connections you uncover</strong></h3>
         <h4 className="splash">Populate your personal philosophical library, then contribute to a shared model</h4>
         <div className="columns medium-6">
           <br/>
