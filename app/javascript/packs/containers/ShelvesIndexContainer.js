@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import BookTile from '../components/BookTile'
 import SearchApp from '../components/SearchApp'
 import ShelvesSaveContainer from './ShelvesSaveContainer'
+import ThinkersRelateContainer from './ThinkersRelateContainer';
+import ThinkerTile from '../components/ThinkerTile';
+
 
 class ShelvesIndexContainer extends Component {
   constructor(props){

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import BookTile from '../components/BookTile'
-import SearchApp from '../components/SearchApp'
+import BookTile from '../components/BookTile';
+import SearchApp from '../components/SearchApp';
+import ThinkersRelateContainer from './ThinkersRelateContainer';
+import ThinkerTile from '../components/ThinkerTile';
 
 
 class ShelvesShowContainer extends Component {
@@ -103,7 +105,6 @@ class ShelvesShowContainer extends Component {
         .then(response => response.json())
         .then(body => {
           let data = body.books
-          console.log(data)
           this.setState({ books: data });
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -125,7 +126,13 @@ class ShelvesShowContainer extends Component {
     }
 
 
+
   render(){
+    let thinkerArray = []
+
+    thinkerArray = this.state.books.map((book) => {
+      return <div>{book.thinker}</div>
+    })
 
     let path;
     if (this.state.searchText === '') {
@@ -133,7 +140,6 @@ class ShelvesShowContainer extends Component {
     } else {
       path = this.state.searchResults
     }
-
     let styleString;
     let booksArray = path.map((book) => {
       if(this.state.selectedArray.includes(book)) {
@@ -154,7 +160,6 @@ class ShelvesShowContainer extends Component {
         />
       )
     })
-
     return (
       <div className="rows">
         <div className="columns medium-6">
@@ -162,6 +167,9 @@ class ShelvesShowContainer extends Component {
         <SearchApp updateSearchResults={this.updateSearchResults} />
         {booksArray}
         </div>
+        <ThinkersRelateContainer
+          books={this.state.books}
+          />
       </div>
     )
   }

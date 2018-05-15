@@ -48,6 +48,18 @@ body {
   margin: 1.5px;
 }
 
+.teacherbook {
+  background-color: green;
+  height: 60px;
+  margin: 1.5px;
+}
+
+.studentbook {
+  background-color: red;
+  height: 60px;
+  margin: 1.5px;
+}
+
 .title {
   font-family: "Libre Baskerville";
   font-size: 1.5em;
@@ -105,4 +117,11 @@ body {
 .top-bar {
   height: 60px;
   background-color: #431c5d;
+  font-family: "Montserrat";
+  font-size: 1.5em;
+  color: red;
+}
+
+a {
+  font-size: 1.5em;
 }
