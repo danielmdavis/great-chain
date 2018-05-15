@@ -8,21 +8,19 @@ class SearchApp extends React.Component {
     this.state = {
       searchText: ''
     }
-    this.handleSearch = this.handleSearch.bind(this)
   }
 
-  handleSearch(input) {
-    this.state.searchText = input
-    this.props.updateSearchResults(this.state.searchText)
-  }
+
+
 
   render() {
     return(
     <div>
       <div>
         <SearchForm
-          value={this.state.searchText}
-          handleSearch={this.handleSearch}
+          handleSearch={this.props.handleSearch}
+          handleSearchSubmit={this.props.handleSearchSubmit}
+          searchText={this.props.searchText}
         />
       </div>
     </div>

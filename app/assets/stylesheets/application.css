@@ -27,7 +27,7 @@ body {
 }
 
 input[type="text"] {
-  color: ;
+  color: #431c5d !important;
   border: 0px;
   font-size: .8em;
   font-family: "Montserrat";
@@ -41,7 +41,7 @@ input[type="text"] {
   margin: 1.5px;
 }
 .book:hover {
-  background-color: rgba(194, 221, 230, .5);
+  background-color: rgba(194, 221, 230, .4);
   color: #431c5d !important;
 }
 .hiddenbook {
@@ -69,7 +69,7 @@ input[type="text"] {
 .title {
   font-family: "Libre Baskerville";
   font-size: 1.5em;
-  margin: 2px 4px;
+  margin: 2px 7px;
 }
 
 .splash {
@@ -117,7 +117,7 @@ input[type="text"] {
   display: block;
 }
 .savebutton:hover {
-  background-color: #2e1042;
+  background-color: #3a1652;
 }
 
 .topbar {
@@ -130,6 +130,7 @@ input[type="text"] {
   font-family: "Montserrat" !important;
   font-size: .8em !important;
   vertical-align: text-bottom !important;
+  line-height: 6rem !important!;
 }
 .navbutton:hover {
   background-color: #370f52 !important;
@@ -137,6 +138,7 @@ input[type="text"] {
 
 .greatchain {
   font-family: "Libre Baskerville" !important;
+  line-height: 3.6rem !important;
 }
 
 a {

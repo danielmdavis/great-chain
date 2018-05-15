@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 
 const SearchForm = props => {
-  let handleSearch = (event) => {
-
-      props.handleSearch(event.target.value);
-     };
-  let Search = <span>
-    <input
-      type='text'
-      onChange={handleSearch}
-      placeholder="Search for a Book or Philosopher"
-    />
-  </span>;
+  // let handleSearch = (event) => {
+  //     props.handleSearch(event.target.value);
+  //    };
 
   return(
-    <div>
-      {Search}
-    </div>
+    <form onSubmit={props.handleSearchSubmit}>
+      <input
+        value={props.searchText}
+        type='text'
+        onChange={props.handleSearch}
+        placeholder="Search for a Book or Philosopher"
+      />
+
+    </form>
   );
 };
 
