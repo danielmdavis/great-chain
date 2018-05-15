@@ -17,10 +17,11 @@ class ShelvesIndexContainer extends Component {
       saveBooks: [],
     }
     this.handleClick = this.handleClick.bind(this)
-    this.updateSearchResults = this.updateSearchResults.bind(this)
+    // this.updateSearchResults = this.updateSearchResults.bind(this)
     this.addNewBooks = this.addNewBooks.bind(this)
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
-
 
   addNewBooks(submission) {
       event.preventDefault();
@@ -66,31 +67,28 @@ class ShelvesIndexContainer extends Component {
   //   }
   // })
 
-  componentDidMount() {
-      fetch(`/api/v1/searches.json`)
-        .then(response => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-                error = new Error(errorMessage);
-            throw(error);
-          }
-        })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({ books: body.books });
-        })
-        .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
+  // componentDidMount() {
+  //     fetch(`/api/v1/searches/search`)
+  //       .then(response => {
+  //         if (response.ok) {
+  //           return response;
+  //         } else {
+  //           let errorMessage = `${response.status} (${response.statusText})`,
+  //               error = new Error(errorMessage);
+  //           throw(error);
+  //         }
+  //       })
+  //       .then(response => response.json())
+  //       .then(body => {
+  //         this.setState({ books: body.books });
+  //       })
+  //       .catch(error => console.error(`Error in fetch: ${error.message}`));
+  // }
 
 
-  postSearchResults(query) {
-    event.preventDefault();
-    fetch(`/api/v1/searches.json`, {
+  getSearchResults(query) {
+    fetch(`/api/v1/searches/search?q=${query}`, {
       credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(query),
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
     })
     .then(response => {
@@ -103,40 +101,43 @@ class ShelvesIndexContainer extends Component {
       }
     })
     .then(response => response.json())
-    .then(query => {
-      debugger;
-      this.setState({ searchText: searchText })
+    .then(body => {
+      this.setState({ books: body })
     })
     .catch(error => console.error(`Error in fetch (posting query): ${error.message}`))
   }
 
-    updateSearchResults(searchText) {
-      let tempResults = []
-      this.state.books.map((book) => {
-        let searchTerms = book.name + book.thinker.name
-        if (searchTerms.toLowerCase().includes(searchText.toLowerCase())) {
-          tempResults.push(book)
-        }
-      })
+    // updateSearchResults(searchText) {
+    //   let tempResults = []
+    //   this.state.books.map((book) => {
+    //     let searchTerms = book.name + book.thinker.name
+    //     if (searchTerms.toLowerCase().includes(searchText.toLowerCase())) {
+    //       tempResults.push(book)
+    //     }
+    //   })
+    //   this.setState({
+    //     searchText: searchText,
+    //     searchResults: tempResults,
+    //   })
+    //   this.getSearchResults(this.state.searchText)
+    // }
 
-      this.setState({
-        searchText: searchText,
-        searchResults: tempResults,
-      })
-      this.postSearchResults(this.state.searchText)
+    handleSearchSubmit(event) {
+      event.preventDefault()
+      let query = this.state.searchText
+      this.getSearchResults(query)
+    }
+
+    handleSearch(event) {
+      let query = event.target.value
+      this.setState({ searchText: query })
     }
 
   render(){
 
-    let path
-    if (this.state.searchText === '') {
-      path = this.state.books
-    } else {
-      path = this.state.searchResults
-    }
 
     let styleString;
-    let booksArray = path.map((book) => {
+    let booksArray = this.state.books.map((book) => {
       if(this.state.selectedArray.includes(book)) {
         styleString = "selectedbook"
       } else {
@@ -145,7 +146,6 @@ class ShelvesIndexContainer extends Component {
 
 
       let handleClick = () => this.handleClick(book)
-
       return (
         <BookTile
           key={book.id}
@@ -167,7 +167,11 @@ class ShelvesIndexContainer extends Component {
         <h4 className="splash">Populate your personal philosophical library, then contribute to a shared model</h4>
         <div className="columns medium-6">
           <br/>
-        <SearchApp updateSearchResults={this.updateSearchResults} />
+        <SearchApp
+          handleSearchResults={this.handleSearchResults}
+          handleSearchSubmit={this.handleSearchSubmit}
+          handleSearch={this.handleSearch}
+          searchText={this.state.searchText} />
         {booksArray}
       </div>
       <ShelvesSaveContainer

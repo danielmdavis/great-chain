@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :books
       resources :shelves
+      resources :searches, only: [:index]
+      get "/searches/search", to: "searches#search"
+      
       resources :thinkers do
         resources :influences
       end
@@ -15,7 +18,6 @@ Rails.application.routes.draw do
 
   # resources :shelves
 
-  resources :searches
 
 
   resources :influences do
