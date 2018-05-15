@@ -21,6 +21,34 @@ class ShelvesShowContainer extends Component {
     this.addNewBooks = this.addNewBooks.bind(this)
   }
 
+
+  addNewInfluence(submission) {
+      event.preventDefault();
+      fetch(`/api/v1/influences.json`, {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify(submission),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(influence => {
+        this.setState({
+          selectedFirst: selectedFirst,
+          selectedSecond: selectedSecond
+        })
+      })
+      .catch(error => console.error(`Error in fetch (submitting books error): ${error.message}`))
+    }
+
     updateSearchResults(query) {
     event.preventDefault();
     fetch(`/shelves.json`, {
@@ -169,6 +197,7 @@ class ShelvesShowContainer extends Component {
         </div>
         <ThinkersRelateContainer
           books={this.state.books}
+          addNewInfluence={this.addNewInfluence}
           />
       </div>
     )

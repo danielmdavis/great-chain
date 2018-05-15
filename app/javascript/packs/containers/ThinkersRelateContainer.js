@@ -37,7 +37,7 @@ class ThinkersRelateContainer extends Component {
   }
 
   handleSave(event){
-    this.props.addNewBooks(this.props.selectedArray)
+    this.props.addNewInfluence(this.props.selectedFirst,this.props.selectedSecond)
   }
 
   render(){
