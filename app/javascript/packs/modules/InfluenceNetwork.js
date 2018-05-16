@@ -7,7 +7,7 @@ const forceWidth = 800;
 const forceHeight = 800;
 const center = {x: forceWidth / 2, y: forceHeight / 2};
 
-export function createNetworkVisualization(rawData) {
+export default function createNetworkVisualization(rawData) {
   network(formatData(rawData));
 }
 

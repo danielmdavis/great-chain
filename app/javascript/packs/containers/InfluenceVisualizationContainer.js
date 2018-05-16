@@ -23,9 +23,9 @@ class InfluenceVisualizationContainer extends Component {
           }
         })
         .then(response => response.json())
-        .then(data => {
-          this.setState({ data: data });
-          InfluenceNetwork(data)
+        .then(body => {
+          this.state.data = body.influences
+          InfluenceNetwork(this.state.data)
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

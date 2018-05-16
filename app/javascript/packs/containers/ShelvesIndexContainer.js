@@ -44,6 +44,7 @@ class ShelvesIndexContainer extends Component {
       .then(book => {
         this.setState({ selectedArray: selectedArray })
       })
+      .then(this.setState({ selectedArray: [] }) )
       .catch(error => console.error(`Error in fetch (submitting books error): ${error.message}`))
     }
 
