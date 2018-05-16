@@ -1,38 +1,33 @@
 
-<h3>
-Did <%= @influence.teacher.name %> influence <%= @influence.student.name %>? Discuss.
-
-</h3>
-
+<div class="row" ><br/>
+<h3 class="prompt">Did <%= @influence.teacher.name %> influence <%= @influence.student.name %>? Discuss.</h3><br/>
   <% @comments.each do |comment| %>
-  <div class="comment row" >
-    <div class="columns medium-8" ><%= comment.description %> </div>
-
+    <span class="comment columns medium-7" ><%= comment.description %> </span>
     <% if comment.vote == 1 %>
-      <div class="vote columns medium-4" >Supports Inclusion.</div>
+      <span class="vote columns medium-4" >Supports Inclusion.</span>
     <%elsif comment.vote == -1 %>
-      <div class="vote columns medium-4" >Rejects Inclusion.</div>
+      <span class="vote columns medium-4" >Rejects Inclusion.</span>
     <%else%>
-      <div class="vote columns medium-4" >No Vote.</div>
+      <span class="vote columns medium-4" >No Vote.</span>
     <%end%>
-  </div>
+  <br/>
   <%end%>
-
+</div><br/>
 
 <div class="row" >
 <%= form_for([@influence, @comment]) do |f|  %>
   <div class="field">
-    <%= f.label :description, class: "label" %><br />
+    <%= f.label :description, class: "label formlabel" %><br />
     <%= f.text_field :description %>
   </div>
 
   <div class="field">
-    <%= f.label :vote, :class => "label" %><br />
+    <%= f.label :vote, :class => "label formlabel" %><br />
     <%= f.select :vote, [[1],[0],[-1]] %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Add Comment", class: "button form-submit" %>
+    <%= f.submit "Add Comment", class: "button form-submit submitbutton" %>
   </div>
 <% end %>
 </div>

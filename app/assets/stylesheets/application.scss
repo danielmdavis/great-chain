@@ -91,9 +91,15 @@ input[type="text"]::placeholder {
 }
 
 .comment {
-  border: 2px solid black;
+  font-family: "Libre Baskerville";
+  font-size: 1.1em;
+  border: 1px solid #e6e9f0;
+  min-height: 60px;
+  height: fit-content;
   margin-bottom: 20px;
-  text-align: center;
+  color: black;
+  background-color: #bccbde;
+  margin: 8px;
 }
 
 .comment_tile {
@@ -119,14 +125,14 @@ input[type="text"]::placeholder {
 .savebutton {
   background-color: #431c5d;
   font-family: "Montserrat";
-  height: 37px;
+  height: 36px;
   margin: auto;
   margin-bottom: 15px;
   width: 100%;
   display: block;
 }
 .savebutton:hover {
-  background-color: #3a1652;
+  background-color: #370f52;
 }
 
 .topbar {
@@ -146,6 +152,11 @@ input[type="text"]::placeholder {
   background-color: #370f52 !important;
 }
 
+.submitbutton, .formlabel {
+  font-family: "Montserrat" !important;
+  background-color: #431c5d;
+}
+
 .greatchain {
   font-family: "Libre Baskerville" !important;
   line-height: 3.9rem !important;
@@ -153,4 +164,9 @@ input[type="text"]::placeholder {
 
 a {
   font-size: 1.5em;
+}
+.prompt {
+  font-family: "Montserrat";
+  font-weight: bold;
+  color: #431c5d !important;
 }
