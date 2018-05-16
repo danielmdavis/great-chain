@@ -67,6 +67,10 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    d3-rails (4.13.0)
+      railties (>= 3.1)
+    d3-tip-rails (0.0.1)
+      railties (>= 3.1)
     database_cleaner (1.7.0)
     devise (4.4.3)
       bcrypt (~> 3.0)
@@ -232,6 +236,8 @@ DEPENDENCIES
   active_model_serializers
   bootsnap (>= 1.1.0)
   capybara
+  d3-rails
+  d3-tip-rails
   database_cleaner
   devise
   factory_bot

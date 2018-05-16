@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'httparty'
 
 gem 'd3-rails'
-gem "d3-tip-rails
+gem 'd3-tip-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
