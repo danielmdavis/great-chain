@@ -31,7 +31,11 @@ input[type="text"] {
   border: 0px;
   font-size: .8em;
   font-family: "Montserrat";
+  font-weight: bold;
   box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.1)
+}
+input[type="text"]::placeholder {
+  color: #431c5d !important;
 }
 
 .book {
@@ -39,10 +43,19 @@ input[type="text"] {
   color: #431c5d !important;
   height: 60px;
   margin: 1.5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all .15s ease-in-out;
 }
 .book:hover {
   background-color: rgba(194, 221, 230, .4);
   color: #431c5d !important;
+  min-height: 60px;
+  height: fit-content;
+  overflow: visible;
+  white-space: normal;
+  margin: 1.5px;
 }
 .hiddenbook {
   visibility: collapse;
@@ -52,7 +65,8 @@ input[type="text"] {
 .selectedbook {
   background-color: #e6e9f0;
   color: #431c5d !important;
-  height: 60px;
+  min-height: 60px;
+  height: fit-content;
   margin: 1.5px;
 }
 .teacherbook {
@@ -68,8 +82,9 @@ input[type="text"] {
 
 .title {
   font-family: "Libre Baskerville";
-  font-size: 1.5em;
+  font-size: 1.25em;
   margin: 2px 7px;
+  display: inline-block;
 }
 
 .splash {
@@ -82,9 +97,15 @@ input[type="text"] {
 }
 
 .comment {
-  border: 2px solid black;
+  font-family: "Libre Baskerville";
+  font-size: 1.1em;
+  border: 1px solid #e6e9f0;
+  min-height: 60px;
+  height: fit-content;
   margin-bottom: 20px;
-  text-align: center;
+  color: black;
+  background-color: #bccbde;
+  margin: 8px;
 }
 
 .comment_tile {
@@ -110,14 +131,15 @@ input[type="text"] {
 .savebutton {
   background-color: #431c5d;
   font-family: "Montserrat";
-  height: 37px;
+  height: 36px;
   margin: auto;
   margin-bottom: 15px;
   width: 100%;
   display: block;
+  line-height: 0rem !important;
 }
 .savebutton:hover {
-  background-color: #3a1652;
+  background-color: #370f52;
 }
 
 .topbar {
@@ -130,11 +152,16 @@ input[type="text"] {
   font-family: "Montserrat" !important;
   font-size: .8em !important;
   vertical-align: text-bottom !important;
-  line-height: 6rem !important;
+  line-height: 4.4rem !important;
 }
 
 .navbutton:hover {
   background-color: #370f52 !important;
+}
+
+.submitbutton, .formlabel {
+  font-family: "Montserrat" !important;
+  background-color: #431c5d;
 }
 
 .greatchain {
@@ -144,4 +171,14 @@ input[type="text"] {
 
 a {
   font-size: 1.5em;
+}
+.prompt {
+  font-family: "Montserrat";
+  font-weight: bold;
+  color: #431c5d !important;
+}
+
+.icon {
+  height: 40px;
+  line-height: 0rem !important;
 }
