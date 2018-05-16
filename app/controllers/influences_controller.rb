@@ -1,7 +1,6 @@
 class InfluencesController < ApplicationController
 
   def index
-    render json: Influence.all
   end
 
   def show

@@ -16,4 +16,8 @@
 //= require activestorage
 //= require_tree .
 
+//= require d3
+//= require d3.tip
+
+
 $(function(){ $(document).foundation(); });
