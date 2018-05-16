@@ -1,3 +1,3 @@
 class InfluenceSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :id, :teacher, :student
 end

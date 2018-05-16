@@ -46,10 +46,16 @@ input[type="text"]::placeholder {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  transition: all .15s ease-in-out;
 }
 .book:hover {
   background-color: rgba(194, 221, 230, .4);
   color: #431c5d !important;
+  min-height: 60px;
+  height: fit-content;
+  overflow: visible;
+  white-space: normal;
+  margin: 1.5px;
 }
 .hiddenbook {
   visibility: collapse;
@@ -130,6 +136,7 @@ input[type="text"]::placeholder {
   margin-bottom: 15px;
   width: 100%;
   display: block;
+  line-height: 0rem !important;
 }
 .savebutton:hover {
   background-color: #370f52;
@@ -145,7 +152,7 @@ input[type="text"]::placeholder {
   font-family: "Montserrat" !important;
   font-size: .8em !important;
   vertical-align: text-bottom !important;
-  line-height: 6rem !important;
+  line-height: 4.4rem !important;
 }
 
 .navbutton:hover {
@@ -169,4 +176,9 @@ a {
   font-family: "Montserrat";
   font-weight: bold;
   color: #431c5d !important;
+}
+
+.icon {
+  height: 40px;
+  line-height: 0rem !important;
 }

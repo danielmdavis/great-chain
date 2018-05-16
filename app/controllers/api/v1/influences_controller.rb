@@ -1,12 +1,11 @@
 class Api::V1::InfluencesController < ApiController
 
   def index
-    render json: Book.all
+    render json: Influence.all
   end
 
   def create
     data = params["_json"]
-
     unique = data[0].to_s + data[1].to_s
     Influence.create!(
       teacher_id: data[0],
