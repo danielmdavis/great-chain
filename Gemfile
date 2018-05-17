@@ -24,13 +24,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 
-<<<<<<< HEAD
 gem 'd3-rails', '~> 4.13.0'
 gem 'd3-tip-rails', '~> 0.0.1'
-=======
-gem 'd3-rails'
-gem 'd3-tip-rails'
->>>>>>> origin
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

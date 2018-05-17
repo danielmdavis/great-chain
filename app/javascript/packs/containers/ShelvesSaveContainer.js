@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookTile from '../components/BookTile'
+import BookCard from '../components/BookCard'
 import SearchApp from '../components/SearchApp'
 
 class ShelvesSaveContainer extends Component {
@@ -55,19 +56,23 @@ class ShelvesSaveContainer extends Component {
     let path = this.props.booksArray
     let selectedBooks = this.props.selectedArray
 
-    let styleString;
+    let styleString = "card";
     let booksArray = path.map((book) => {
 
       if(selectedBooks.includes(book)) {
-        styleString = "book"
+        styleString = "card"
       } else {
         styleString = "hiddenbook"
+      }
+
+      if(book.image == "https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png") {
+        book.image = null
       }
 
       let handleClick = () => this.handleClick(book)
 
       return (
-        <BookTile
+        <BookCard
           key={book.id}
           id={book.id}
           name={book.name}
@@ -81,12 +86,10 @@ class ShelvesSaveContainer extends Component {
       return booksArray
     })
     return (
-      <div className="rows">
-        <div className="columns medium-6">
-          <br/>
+      <div className="columns medium-6">
+        <br/>
         <button className="savebutton centered" onClick={this.handleSave}>Save Books to Shelf</button>
         {booksArray}
-      </div>
       </div>
     )
   }
