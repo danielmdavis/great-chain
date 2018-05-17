@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import * as d3 from "d3";
-// import InfluenceNetwork from '../modules/InfluenceNetwork'
+import InfluenceNetwork from '../modules/InfluenceNetwork'
 
 class InfluenceVisualizationContainer extends Component {
   constructor(props){

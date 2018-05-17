@@ -183,3 +183,39 @@ a {
   height: 40px;
   line-height: 0rem !important;
 }
+
+.node {
+   fill: #aaa;
+   stroke: #fff;
+   stroke-width: 2px;
+ }
+ .link {
+   fill: none;
+   stroke: #000;
+   stroke-width: 2px;
+ }
+ .tooltip {
+   line-height: 1;
+   padding: 15px;
+   background: rgba(30, 40, 55, 0.85);
+   max-width: 20vw;
+   word-wrap: break-word;
+   color: #fff;
+ }
+ /* Creates a small triangle extender for the tooltip */
+ .tooltip:after {
+   box-sizing: border-box;
+   display: inline;
+   font-size: 10px;
+   width: 100%;
+   line-height: 1;
+   color: rgba(30, 40, 55, 0.85);
+   content: "\25BC";
+   position: absolute;
+   text-align: center;
+ }
+ .tooltip.n:after {
+   margin: -2px 0 0 0;
+   top: 100%;
+   left: 0;
+ }

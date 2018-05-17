@@ -1,7 +1,17 @@
-// NOTE: these values will have to be scaled to the number
+import * as d3 from "d3";
+
+/*
+  Some of the code inspired/borrowed from http://bl.ocks.org/mbostock/1153292
+*/
+
+// For images
+const dummyUrl = 'https://cdn-images-1.medium.com/max/1600/1*eLDH_qnNczZ8jOjd0vbbfw.gif';
+const imageWidth = 20;
+const imageRadius = imageWidth / 2;
+
+// NOTE: this value might need to be scaled to the number
 // of nodes in the network.
 const STRENGTH = -1000;
-const NODE_RADIUS = 15;
 
 const forceWidth = 800;
 const forceHeight = 800;
@@ -28,6 +38,13 @@ function formatData(data) {
 
   const uniqueNodes = new Set();
   data.forEach(d => {
+    const { teacher, student } = d;
+
+    // TODO this just adds a dummy image url (Nietzsche). Remove this when real
+    // image urls are being returned.
+    teacher.img = dummyUrl;
+    student.img = dummyUrl;
+
     if (!uniqueNodes.has(d.teacher.id)) {
       nodes.push(d.teacher);
       uniqueNodes.add(d.teacher.id);
@@ -77,8 +94,9 @@ function network(data) {
 
   // Create the svg for the arrow at the end of each edge. This
   // allows you to add a "marker" to the end of each link.
-  svg.append('svg:defs')
-    .selectAll('marker')
+  const defs = svg.append('svg:defs');
+
+  defs.selectAll('marker')
     .data(['end'])  // Different link/path types can be defined here
     .enter()
     .append('svg:marker') // This section adds in the arrows
@@ -90,7 +108,10 @@ function network(data) {
     .attr('markerHeight', 6) // Play with the arrow positioning
     .attr('orient', 'auto')
     .append('svg:path')
-    .attr('d', 'M0,-4L8,0L0,4'); // This defines the path that draws the arrow. Play with arrow size.
+    .attr('d', 'M0,-5L10,0L0,5'); // This defines the path that draws the arrow. Play with arrow size.
+
+  // Clip path used to mask the images, so that they appear as circles
+  const clipPath = defs.append('clipPath').attr('id', 'image-clip');
 
   // Add links or edges as path elements. Group all of these
   // paths in a g element. Link width (thickness) represents
@@ -104,6 +125,25 @@ function network(data) {
     .attr('class', 'link')
     .attr('marker-end', 'url(#end)');
 
+// svg.append("image")
+//   .attr("x", 0)
+//   .attr("y", 0)
+//   .attr("width", AVATAR_WIDTH)
+//   .attr("height", AVATAR_WIDTH)
+//   .attr("xlink:href", myAvatarUrl)
+//   .attr("clip-path", "url(#avatar-clip)")
+//   .attr("transform", "translate(posx, posy)")
+//   .append('My username')
+
+  // Create a circle mask for each node, so that each image can
+  // take the shape of a circle.
+  const clip = clipPath.selectAll('.clip')
+    .data(data.nodes)
+    .enter()
+    .append('circle')
+    .attr('class', 'clip')
+    .attr('r', imageRadius);
+
   // Add node elements, grouped together. Each node represents
   // a philosopher.
   const node = svg.append('g')
@@ -111,9 +151,12 @@ function network(data) {
     .selectAll('.node')
     .data(data.nodes)
     .enter()
-    .append('circle')
+    .append('image')
     .attr('class', 'node')
-    .attr('r', NODE_RADIUS);
+    .attr('xlink:href', d => d.img)
+    .attr('width', imageWidth)
+    .attr('height', imageWidth);
+    // .attr('clip-path', 'url(#image-clip)');
 
   // Start the simulation
   simulation.nodes(data.nodes).on('tick', tick);
@@ -140,45 +183,86 @@ function network(data) {
       return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
     });
 
+    // The x,y attributes of images correspond to their top-left corner.
+    // To center them as we would with circles, displace them to the left
+    // and up by half their width.
     node
+      .attr('x', d => d.x - imageWidth / 2)
+      .attr('y', d => d.y - imageWidth / 2);
+
+    clip
       .attr('cx', d => d.x)
       .attr('cy', d => d.y);
   }
 
-  // Formats HTML for the node tooltips: show the book
-  // title and its average rating.
-  function nodeTooltipContent(d) {
-    return `
-      <strong>${d.name}</strong>
-    `;
+  function onEnterNode(d, i) {
+    d3
+      .select(this)
+      .transition()
+      .duration(200)
+      .attr('width', imageWidth * 2)
+      .attr('height', imageWidth * 2)
+      .attr('transform', `translate(${-imageWidth / 2}, ${-imageWidth / 2})`);
+    d3
+      .select(clip.nodes()[i])
+      .transition()
+      .duration(200)
+      .attr('r', imageRadius * 2)
+      .attr('transform', `translate(${imageWidth / 2}, ${imageWidth / 2})`);
   }
 
-  // Formats HTML for the link tooltips: show the two
-  // book titles and the tags they have in common.
-  function linkTooltipContent(d) {
-    return `
-      <strong>${d.source.name} &mdash; ${d.target.name}</strong>
-      <p>${d.vote} people voted on this relationship</p>
-    `;
+  function onLeaveNode(d, i) {
+    d3
+      .select(this)
+      .attr('width', imageWidth)
+      .attr('height', imageWidth)
+      .attr('transform', null);
+      // .attr('transform', `translate(${imageWidth / 2}, ${imageWidth / 2})`);
+    d3
+      .select(clip.nodes()[i])
+      .attr('r', imageRadius)
+      .attr('transform', null);
+
+    tick();
   }
 
-  function addToolTip(svg, selection, formatter) {
-    const tip = d3.tip()
-      .attr('class', 'tooltip')
-      .html(formatter);
-    svg.call(tip);
-    selection
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
-  }
+  node.on('click', () => {
+    console.log('click');
+  });
 
-  // Initialize the tooltips
-  addToolTip(svg, node, nodeTooltipContent);
-  addToolTip(svg, link, linkTooltipContent);
+  node
+    .on('mouseenter', onEnterNode)
+    .on('mouseleave', onLeaveNode);
 
-  // // Scroll to center of network
-  // window.scrollTo(
-  //   (forceWidth - window.innerWidth) / 2,
-  //   (forceHeight - window.innerHeight) / 2
-  // );
+  // OLD TOOLTIP STUFF
+  // // Formats HTML for the node tooltips: show the book
+  // // title and its average rating.
+  // function nodeTooltipContent(d) {
+  //   return `
+  //     <strong>${d.name}</strong>
+  //   `;
+  // }
+
+  // // Formats HTML for the link tooltips: show the two
+  // // book titles and the tags they have in common.
+  // function linkTooltipContent(d) {
+  //   return `
+  //     <strong>${d.source.name} &mdash; ${d.target.name}</strong>
+  //     <p>${d.vote} people voted on this relationship</p>
+  //   `;
+  // }
+
+  // function addToolTip(svg, selection, formatter) {
+  //   const tip = d3.tip()
+  //     .attr('class', 'tooltip')
+  //     .html(formatter);
+  //   svg.call(tip);
+  //   selection
+  //     .on('mouseenter', tip.show)
+  //     .on('mouseleave', tip.hide);
+  // }
+
+  // // Initialize the tooltips
+  // addToolTip(svg, node, nodeTooltipContent);
+  // addToolTip(svg, link, linkTooltipContent);
 }
