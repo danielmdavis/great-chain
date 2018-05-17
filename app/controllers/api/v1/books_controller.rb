@@ -17,7 +17,7 @@ class Api::V1::BooksController < ApiController
         #   shelf_id: 1
         # )
       # else
-        this_thinker = Thinker.create!(id: Thinker.all.length, name: book["thinker"])
+        this_thinker = Thinker.create!(id: Thinker.all.length+1, name: book["thinker"])
           Book.create!(
             name: book["name"],
             thinker: this_thinker,

@@ -73,15 +73,13 @@ class ThinkersRelateContainer extends Component {
     let thinkers = this.props.books.map((book) => {
       if(duplicateCheck.includes(book.thinker.id)) {
       } else {
-        duplicateCheck.push(book.thinker.id)
-      let styleString;
+        duplicateCheck.push(book.thinker.id) }
+
+      let styleString = "card";
       if(this.state.selectedFirst === book.thinker.id){
-        styleString = "teacherbook"
+        styleString = "teachercard"
       } else if(this.state.selectedSecond === book.thinker.id){
-        styleString = "studentbook"
-      } else{
-        styleString = "book"
-      }
+        styleString = "studentcard" }
 
       let handleClick = () => this.handleClick(book)
       return (
@@ -94,18 +92,15 @@ class ThinkersRelateContainer extends Component {
           />
         )
 
-      }
-
+        return thinkers
       })
 
     return (
-      <div className="rows">
         <div className="columns medium-6">
           <br/>
           <button className="savebutton centered" onClick={this.handleSave}>Click to SAVE an Influence Relationship</button>
           {thinkers}
         </div>
-      </div>
     )
   }
 }

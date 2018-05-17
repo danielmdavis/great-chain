@@ -69,15 +69,44 @@ input[type="text"]::placeholder {
   height: fit-content;
   margin: 1.5px;
 }
-.teacherbook {
+.teachercard {
   background-color: #89b589;
-  height: 60px;
-  margin: 1.5px;
+  color: #431c5d !important;
+  height: 220px;
+  width:110%;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all .15s ease-in-out;
+  align-content: center;
+  text-align: center !important;
 }
-.studentbook {
+.studentcard {
   background-color: #ca7a7a;
-  height: 60px;
-  margin: 1.5px;
+  color: #431c5d !important;
+  height: 220px;
+  width:110%;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all .15s ease-in-out;
+  align-content: center;
+  text-align: center !important;
+}
+.card {
+  background-color: #bccbde;
+  color: #431c5d !important;
+  height: 220px;
+  width:110%;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: all .15s ease-in-out;
+  align-content: center;
+  text-align: center !important;
 }
 
 .title {
@@ -86,6 +115,28 @@ input[type="text"]::placeholder {
   font-size: 1.25em;
   margin: 2px 7px;
   display: inline-block;
+}
+.cardtitle {
+  font-family: "Libre Baskerville";
+  color: black;
+  font-size: .9em;
+  margin: 2px 7px;
+  display: inline;
+  white-space: normal !important;
+}
+.author {
+  font-family: "Montserrat";
+  text-align: right;
+  margin-left: 10px;
+  margin-bottom: 6px;
+}
+.cardauthor {
+  font-family: "Montserrat";
+  text-align: right;
+  margin-left: 10px;
+  margin-bottom: 6px;
+  font-size: .75em;
+  white-space: normal !important;
 }
 
 .splash {
@@ -118,12 +169,6 @@ input[type="text"]::placeholder {
   margin: 8px;
 }
 
-.author {
-  font-family: "Montserrat";
-  text-align: right;
-  margin-left: 10px;
-  margin-bottom: 6px;
-}
 
 .search {
   height: 60px;
@@ -221,5 +266,6 @@ a {
  }
 
 .tilepic {
-  height: 45px;
+  min-height: 50%;
+  max-height: 67%;
 }
