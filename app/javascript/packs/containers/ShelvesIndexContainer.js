@@ -58,23 +58,7 @@ class ShelvesIndexContainer extends Component {
     this.forceUpdate()
   }
 
-  // componentDidMount() {
-  //     fetch(`/api/v1/searches/search`)
-  //       .then(response => {
-  //         if (response.ok) {
-  //           return response;
-  //         } else {
-  //           let errorMessage = `${response.status} (${response.statusText})`,
-  //               error = new Error(errorMessage);
-  //           throw(error);
-  //         }
-  //       })
-  //       .then(response => response.json())
-  //       .then(body => {
-  //         this.setState({ books: body.books });
-  //       })
-  //       .catch(error => console.error(`Error in fetch: ${error.message}`));
-  // }
+
 
   getSearchResults(query) {
     fetch(`/api/v1/searches/search?q=${query}`, {
