@@ -73,6 +73,7 @@ class ShelvesSaveContainer extends Component {
           name={book.name}
           thinker={book.thinker}
           year={book.year}
+          image={book.image}
           handleClick={handleClick}
           styleString={styleString}
           />

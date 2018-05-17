@@ -17,7 +17,6 @@ class ShelvesIndexContainer extends Component {
       saveBooks: [],
     }
     this.handleClick = this.handleClick.bind(this)
-    // this.updateSearchResults = this.updateSearchResults.bind(this)
     this.addNewBooks = this.addNewBooks.bind(this)
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -48,7 +47,6 @@ class ShelvesIndexContainer extends Component {
       .catch(error => console.error(`Error in fetch (submitting books error): ${error.message}`))
     }
 
-
   handleClick(book){
     // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(book)) {
@@ -59,14 +57,6 @@ class ShelvesIndexContainer extends Component {
     }
     this.forceUpdate()
   }
-
-  // let books = this.state.books
-  // books.forEach(book => {
-  //   if (this.state.selectedArray.includes(book.id)){
-  //     debugger;
-  //     this.state.saveBooks.push(book)
-  //   }
-  // })
 
   // componentDidMount() {
   //     fetch(`/api/v1/searches/search`)
@@ -85,7 +75,6 @@ class ShelvesIndexContainer extends Component {
   //       })
   //       .catch(error => console.error(`Error in fetch: ${error.message}`));
   // }
-
 
   getSearchResults(query) {
     fetch(`/api/v1/searches/search?q=${query}`, {
@@ -108,21 +97,6 @@ class ShelvesIndexContainer extends Component {
     .catch(error => console.error(`Error in fetch (posting query): ${error.message}`))
   }
 
-    // updateSearchResults(searchText) {
-    //   let tempResults = []
-    //   this.state.books.map((book) => {
-    //     let searchTerms = book.name + book.thinker.name
-    //     if (searchTerms.toLowerCase().includes(searchText.toLowerCase())) {
-    //       tempResults.push(book)
-    //     }
-    //   })
-    //   this.setState({
-    //     searchText: searchText,
-    //     searchResults: tempResults,
-    //   })
-    //   this.getSearchResults(this.state.searchText)
-    // }
-
     handleSearchSubmit(event) {
       event.preventDefault()
       let query = this.state.searchText
@@ -134,8 +108,8 @@ class ShelvesIndexContainer extends Component {
       this.setState({ searchText: query })
     }
 
-  render(){
 
+  render(){
 
     let styleString;
     let booksArray = this.state.books.map((book) => {
@@ -145,7 +119,6 @@ class ShelvesIndexContainer extends Component {
         styleString = "book"
       }
 
-
       let handleClick = () => this.handleClick(book)
       return (
         <BookTile
@@ -154,13 +127,13 @@ class ShelvesIndexContainer extends Component {
           name={book.name}
           thinker={book.thinker}
           year={book.year}
+          image={book.image}
           handleClick={handleClick}
           styleString={styleString}
           />
       )
       return booksArray
     })
-
 
     return (
       <div className="rows">
