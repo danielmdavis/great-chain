@@ -236,8 +236,13 @@ DEPENDENCIES
   active_model_serializers
   bootsnap (>= 1.1.0)
   capybara
+<<<<<<< HEAD
+  d3-rails (~> 4.13.0)
+  d3-tip-rails (~> 0.0.1)
+=======
   d3-rails
   d3-tip-rails
+>>>>>>> origin
   database_cleaner
   devise
   factory_bot

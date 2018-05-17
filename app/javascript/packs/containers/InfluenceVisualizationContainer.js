@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import * as d3 from "d3";
-// import InfluenceNetwork from '../modules/InfluenceNetwork'
+import InfluenceNetwork from '../modules/InfluenceNetwork'
 
 class InfluenceVisualizationContainer extends Component {
   constructor(props){
@@ -23,9 +22,9 @@ class InfluenceVisualizationContainer extends Component {
           }
         })
         .then(response => response.json())
-        .then(data => {
-          this.setState({ data: data });
-          InfluenceNetwork(data)
+        .then(body => {
+          this.state.data = body.influences
+          InfluenceNetwork(this.state.data)
         })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

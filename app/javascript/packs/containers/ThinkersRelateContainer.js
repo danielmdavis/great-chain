@@ -8,7 +8,6 @@ class ThinkersRelateContainer extends Component {
     super(props)
     this.state = {
       books: [],
-      selectedArray: [],
       selectedFirst: '',
       selectedSecond: '',
       searchText: '',
@@ -38,10 +37,12 @@ class ThinkersRelateContainer extends Component {
       })
       .then(response => response.json())
       .then(influence => {
-        this.setState({
-          influencePair: influencePair
-        })
+        this.setState({ influencePair: influencePair })
       })
+      .then(
+        this.setState({ selectedFirst: '' }),
+        this.setState({ selectedSecond: '' })
+       )
       .catch(error => console.error(`Error in fetch (submitting books error): ${error.message}`))
     }
 
@@ -68,17 +69,15 @@ class ThinkersRelateContainer extends Component {
 
   render(){
     let duplicateCheck = [];
-    let books = this.props.books
 
-    let thinkers = books.map((book) => {
+    let thinkers = this.props.books.map((book) => {
       if(duplicateCheck.includes(book.thinker.id)) {
       } else {
         duplicateCheck.push(book.thinker.id)
-
       let styleString;
-      if(this.state.selectedFirst == book.thinker.id){
+      if(this.state.selectedFirst === book.thinker.id){
         styleString = "teacherbook"
-      } else if(this.state.selectedSecond == book.thinker.id){
+      } else if(this.state.selectedSecond === book.thinker.id){
         styleString = "studentbook"
       } else{
         styleString = "book"
@@ -103,7 +102,7 @@ class ThinkersRelateContainer extends Component {
       <div className="rows">
         <div className="columns medium-6">
           <br/>
-          <button className="savebutton centered" onClick={this.handleSave}>Click to SAVE Once You've Defined an Influence Relationship</button>
+          <button className="savebutton centered" onClick={this.handleSave}>Click to SAVE an Influence Relationship</button>
           {thinkers}
         </div>
       </div>

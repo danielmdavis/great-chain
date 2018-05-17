@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_05_09_203512) do
   create_table "books", force: :cascade do |t|
     t.string "name", null: false
     t.integer "year", null: false
+    t.string "image"
     t.bigint "shelf_id"
     t.bigint "thinker_id"
     t.datetime "created_at", null: false
@@ -53,6 +54,8 @@ ActiveRecord::Schema.define(version: 2018_05_09_203512) do
 
   create_table "thinkers", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "born"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
