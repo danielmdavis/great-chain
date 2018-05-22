@@ -31,16 +31,9 @@ class InfluenceVisualizationContainer extends Component {
 
 
   render() {
-
-
-
     return(
-
-      <div id="chart"> This </div>
-
-
+      <div id="chart"></div>
     )
-
   }
 }
 

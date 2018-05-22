@@ -69,7 +69,7 @@ input[type="text"]::placeholder {
   height: fit-content;
   margin: 1.5px;
 }
-.teachercard {
+/*.teachercard {
   background-color: #89b589;
   color: #431c5d !important;
   height: 220px;
@@ -94,8 +94,18 @@ input[type="text"]::placeholder {
   transition: all .15s ease-in-out;
   align-content: center;
   text-align: center !important;
+}*/
+.teachercard {
+  border: 2px solid black;
 }
-.card {
+.studentcard {
+  border: 2px solid black;
+}
+.card, .teachercard, .studentcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #bccbde;
   color: #431c5d !important;
   height: 220px;
@@ -229,43 +239,58 @@ a {
   line-height: 0rem !important;
 }
 
-.node {
-   fill: #aaa;
-   stroke: #fff;
-   stroke-width: 2px;
- }
- .link {
-   fill: none;
-   stroke: #000;
-   stroke-width: 2px;
- }
- .tooltip {
-   line-height: 1;
-   padding: 15px;
-   background: rgba(30, 40, 55, 0.85);
-   max-width: 20vw;
-   word-wrap: break-word;
-   color: #fff;
- }
- /* Creates a small triangle extender for the tooltip */
- .tooltip:after {
-   box-sizing: border-box;
-   display: inline;
-   font-size: 10px;
-   width: 100%;
-   line-height: 1;
-   color: rgba(30, 40, 55, 0.85);
-   content: "\25BC";
-   position: absolute;
-   text-align: center;
- }
- .tooltip.n:after {
-   margin: -2px 0 0 0;
-   top: 100%;
-   left: 0;
- }
-
 .tilepic {
   min-height: 50%;
   max-height: 67%;
 }
+
+//*********
+
+.node {
+    fill: #aaa;
+    stroke: #fff;
+    stroke-width: 2px;
+    cursor: pointer;
+  }
+  .link {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+    cursor: pointer;
+  }
+  .tooltip {
+    line-height: 1;
+    padding: 15px;
+    background: rgba(30, 40, 55, 0.85);
+    max-width: 20vw;
+    word-wrap: break-word;
+    color: #fff;
+  }
+  .info-box rect {
+    fill: rgba(30, 40, 55, 0.85);
+    font-family: "Montserrat";
+  }
+  .info-box text {
+    fill: #fff;
+    font-family: "Montserrat";
+  }
+  .info-box .box-name {
+    font-weight: bold;
+    font-family: "Montserrat";
+  }
+  .info-box .box-lifespan {
+    opacity: 0.8;
+    font-family: "Montserrat";
+  }
+  .info-box .box-books {
+    font-style: italic;
+  }
+  .info-box .heart {
+    fill: red;
+  }
+  .info-box .vote-link {
+    fill: orange;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: "Montserrat";
+  }
