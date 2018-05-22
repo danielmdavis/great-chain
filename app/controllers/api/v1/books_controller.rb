@@ -14,7 +14,7 @@ class Api::V1::BooksController < ApiController
         #   thinker: Thinker.find_by_name(book["thinker"]),
         #   year: book["year"],
         #   id: book["id"],
-        image: book["image"],
+        # image: book["image"],
         #   shelf_id: 1
         # )
       # else
