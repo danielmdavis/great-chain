@@ -17,7 +17,6 @@ class ShelvesSaveContainer extends Component {
   }
 
   handleClick(id){
-    // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(id)) {
       let remove = this.state.selectedArray.indexOf(id)
       this.state.selectedArray.splice(remove, 1)

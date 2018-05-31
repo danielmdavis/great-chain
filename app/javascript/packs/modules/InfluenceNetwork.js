@@ -1,10 +1,5 @@
 import * as d3 from 'd3';
 
-/*
-  Some of the code inspired/borrowed from http://bl.ocks.org/mbostock/1153292
-*/
-
-// For images
 function addExtraData(d) {
   const data = {
     'Plato': {
@@ -68,14 +63,6 @@ export default function createNetworkVisualization(rawData) {
   network(formatData(rawData));
 }
 
-/*
-  Format data for network visualization. D3 networks require nodes and edges.
-  Nodes need to be in the following format: [{name, id}]
-  Edges need to be in the following format: [{source, target}] where source
-  and target are the student/teacher ids.
-
-  Input data is the raw response object.
-*/
 function formatData(data) {
   // Create a list of nodes representing philosophers and edges between them.
   // Nodes must be unique, i.e., a philosoher cannot appear in the list of nodes
@@ -109,9 +96,7 @@ function formatData(data) {
   return { nodes, edges };
 }
 
-/*
-  Draw the network visualization.
-*/
+
 function network(data) {
   // Sets the node id accessor so that the force simulation
   // knows that a node (philosopher) is uniquely identified by its id
