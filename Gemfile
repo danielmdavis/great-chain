@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
+# gem 'nokogiri', '~> 1.8.2'
 
 gem 'd3-rails', '~> 4.13.0'
 gem 'd3-tip-rails', '~> 0.0.1'
