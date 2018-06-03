@@ -27,8 +27,8 @@
         <li class="link"><%= link_to 'Search and Add to Shelf', root_path, :class => "navbutton"  %></li>
         <%- if current_user -%>
 
-          <li class="link"><%= link_to 'View Shelf and Add Influences', root_path, :class => "navbutton" %></li>
-          <li> <a class="navbutton" href"/influences"> View Influences Visualization </a> </li>
+          <li class="link"><%= link_to 'View Shelf and Add Influences', "/shelves/1", :class => "navbutton" %></li> 
+          <li class="link"><%= link_to 'View Influences Visualization', "/influences", :class => "navbutton" %></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "navbutton"  %></li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path, :class => "navbutton"  %></li>
