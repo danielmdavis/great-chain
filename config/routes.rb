@@ -18,14 +18,12 @@ Rails.application.routes.draw do
 
   resources :shelves
 
-
-
-
   resources :influences do
    resources :comments
   end
 
   get "/influences", to: "influences#index"
   get "/shelves", to: "shelves#index"
-  get "*path", to: 'shelves#index'
+
+  get "*path", to: "shelves#index"
 end
