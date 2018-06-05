@@ -2,7 +2,7 @@ require 'httparty'
 
 class ShelvesController < ApplicationController
 
-def show
-end
+  def show
+  end
 
 end

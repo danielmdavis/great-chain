@@ -9,7 +9,7 @@ class Routes extends Component {
     return (
       <Router history={browserHistory}>
         <Route path="/" component={ShelvesIndexContainer} />
-        <Route path="/shelves/:id" component={ShelvesShowContainer} />
+        <Route path="shelves/:id" component={ShelvesShowContainer} />  
         <Route path="/influences" component={InfluenceVisualizationContainer} />
       </Router>
     );
