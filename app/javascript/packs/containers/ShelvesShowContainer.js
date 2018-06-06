@@ -105,7 +105,7 @@ class ShelvesShowContainer extends Component {
   handleClick(book){
     // this.setState({selectedArray: id})
     if(this.state.selectedArray.includes(book)) {
-      let remove = this.state.selectedArray.indexOf(book.id)
+      let remove = this.state.selectedArray.indexOf(book)
       this.state.selectedArray.splice(remove, 1)
     } else {
       this.state.selectedArray.push(book)
@@ -192,6 +192,17 @@ class ShelvesShowContainer extends Component {
     })
     return (
       <div className="rows">
+
+        <div className="callout alert splash" data-closable>
+          <h5>This is Important!</h5>
+          <p>But when you're done reading it, click the close button in the corner to dismiss this alert.</p>
+          <p>I'm using the default <code>data-closable</code> parameters, and simply fade out.</p>
+          <button className="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
         <div className="columns medium-6">
           <br/>
         <SearchApp updateSearchResults={this.updateSearchResults} />
