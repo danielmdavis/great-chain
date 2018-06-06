@@ -12,14 +12,14 @@ class Api::V1::SearchesController < ApiController
     data = book_call["GoodreadsResponse"]["search"]["results"]["work"]
     formatted_books = []
     data.each do |book|
-      thinker_id = book["best_book"]["author"]["id"]
-      thinker_call = HTTParty.get("https://www.goodreads.com/author/show/#{thinker_id}?format=xml&key=B8epnsvG4JVbFEGCw5FlA")
+      # thinker_id = book["best_book"]["author"]["id"]
+      # thinker_call = HTTParty.get("https://www.goodreads.com/author/show/#{thinker_id}?format=xml&key=B8epnsvG4JVbFEGCw5FlA")
       book_hash = {
         name: book["best_book"]["title"],
         thinker: book["best_book"]["author"]["name"],
         year: book["original_publication_year"],
         id: book["best_book"]["id"],
-        thinker_id: book["best_book"]["author"]["id"]
+        thinker_id: book["best_book"]["author"]["id"],
         image:  book["best_book"]["image_url"],
         # thinker_image: thinker_call["GoodreadsResponse"]["author"]["image_url"],
         # thinker_year: thinker_call["GoodreadsResponse"]["author"]["born_at"][0,4],
