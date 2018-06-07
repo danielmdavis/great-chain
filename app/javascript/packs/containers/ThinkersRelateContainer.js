@@ -13,7 +13,7 @@ class ThinkersRelateContainer extends Component {
       searchText: '',
       searchResults: [],
       influencePair: [],
-      influenceMessage: 'To save an influence relationship, select a teacher',
+      influenceMessage: 'Select a Teacher',
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleSave = this.handleSave.bind(this)
@@ -29,9 +29,10 @@ class ThinkersRelateContainer extends Component {
       })
       .then(response => {
         if (response.ok) {
-          this.setState({ influenceMessage: 'Saved!' });
+          this.setState({ influenceMessage: 'Saved!' })
           return response;
         } else {
+          this.setState({ influenceMessage: 'Relationship Already Exists or is Incomplete' })
           let errorMessage = `${response.status} (${response.statusText})`,
               error = new Error(errorMessage);
           throw(error);
@@ -40,10 +41,6 @@ class ThinkersRelateContainer extends Component {
       .then(response => response.json())
       .then(influence => {
         this.setState({ influencePair: influencePair })
-      })
-      .then(() => {
-        this.setState({ selectedFirst: '' });
-        this.setState({ selectedSecond: '' });
       })
       .catch(error => console.error(`Error in fetch (submitting books error): ${error.message}`))
     }
@@ -54,26 +51,30 @@ class ThinkersRelateContainer extends Component {
     let influenceMessage;
     if(this.state.selectedFirst == book.thinker.id){
       this.state.selectedFirst = ''
-      influenceMessage = 'Select a teacher';
+      influenceMessage = 'Select a Teacher';
     } else if(this.state.selectedSecond == book.thinker.id){
       let remove = this.state.selectedFirst.indexOf(book.thinker.id)
       this.state.selectedSecond = ''
-      influenceMessage = 'Select a student';
+      influenceMessage = 'Select a Student';
     } else if(this.state.selectedFirst == ''){
       this.state.selectedFirst = book.thinker.id
-      influenceMessage = 'Select a student';
+      influenceMessage = 'Select a Student';
     } else if(this.state.selectedSecond == ''){
       this.state.selectedSecond = book.thinker.id
-      influenceMessage = 'Click to save this influence relationship';
+      influenceMessage = 'Click to Save this Influence Relationship';
     }
     this.setState({ influenceMessage });
-    this.forceUpdate()
   }
 
   handleSave(event){
     this.setState({ influenceMessage: 'Saving Influence Relationship' });
     this.state.influencePair.push(this.state.selectedFirst,this.state.selectedSecond)
     this.addNewInfluence(this.state.influencePair)
+    this.setState({ selectedFirst: '' })
+    this.setState({ selectedSecond: '' })
+    this.setState({ influencePair: [] })
+    this.setTimeout(function() {
+    }, 2000)
   }
 
   render(){
