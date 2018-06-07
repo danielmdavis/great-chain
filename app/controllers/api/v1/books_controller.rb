@@ -18,7 +18,16 @@ class Api::V1::BooksController < ApiController
         #   shelf_id: 1
         # )
       # else
-        this_thinker = Thinker.create!(id: Thinker.all.length+1, name: book["thinker"])
+      ### THIS ALONE DOESN'T WORK because it means I can't add further books from the same thinker !! duh
+      query = book["thinker_id"]
+        thinker_call = HTTParty.get("https://www.goodreads.com/author/show/#{query}?format=xml&key=B8epnsvG4JVbFEGCw5FlA")
+        this_thinker = Thinker.create!(
+          id: book["thinker_id"],
+          name: book["thinker"],
+          born: thinker_call["GoodreadsResponse"]["author"]["born_at"][0,4],
+          image: thinker_call["GoodreadsResponse"]["author"]["image_url"]
+        )
+
           Book.create!(
             name: book["name"],
             thinker: this_thinker,
