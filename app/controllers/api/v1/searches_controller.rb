@@ -12,7 +12,6 @@ class Api::V1::SearchesController < ApiController
     data = book_call["GoodreadsResponse"]["search"]["results"]["work"]
     formatted_books = []
     data.each do |book|
-      # thinker_id = book["best_book"]["author"]["id"]
       # thinker_call = HTTParty.get("https://www.goodreads.com/author/show/#{thinker_id}?format=xml&key=B8epnsvG4JVbFEGCw5FlA")
       book_hash = {
         name: book["best_book"]["title"],
