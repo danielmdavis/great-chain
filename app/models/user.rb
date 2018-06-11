@@ -8,7 +8,7 @@ class User < ApplicationRecord
   after_create :create_shelf
 
   def create_shelf
-    Shelf.create(user_id: self.id)
+    Shelf.create(user_id: User.last.id, id: User.last.id)
   end
 
 end
